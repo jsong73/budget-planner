@@ -1,19 +1,17 @@
-const mongoose = require("mongoose");
+const Sequelize = require("sequelize");
+require("dotenv").config();
 
-mongoose.connect(process.env.MONGODB_URI || 'mongodb://127.0.0.1:27017/budgetDB', {
-    useNewUrlParser: true,
-    useUnifiedTopology: true
-});
+const sequelize = new Sequelize(process.env.DB_NAME, process.env.DB_USER, process.env.DB_PASSWORD, {
+    host: "localhost",
+    dialect: "mysql",
+    logging: false
+})
 
-mongoose.connection.on("connected", () => {
-    console.log("Connected to database!");
-});
+sequelize.authenticate().then(() => {
+    console.log('Connection has been established successfully.');
+ }).catch((error) => {
+    console.error('Unable to connect to the database: ', error);
+ });
 
 
-mongoose.connection.on("error", (err) => {
-    console.error(`Failed to connect to database: ${err}`);
-});
-  
-  
-
-module.exports = mongoose.connection;
+ module.exports = sequelize;
