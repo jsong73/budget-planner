@@ -1,7 +1,10 @@
 import React, { useState } from "react";
 import DatePicker from "react-datepicker"
+import { useGlobalContext } from "../context/globalContext";
 
 function Form() {
+    const { addIncome}  = useGlobalContext;
+
     const [ inputState , setInputState ] = useState({
         title: "",
         amount: "",
@@ -18,11 +21,14 @@ const handleInput = name => e => {
 
 const handleSubmit = e => {
     e.preventDefault();
+    addIncome(inputState)
 }
 
   return (
     <div>
     <form onSubmit={handleSubmit}>
+    
+    <div>
         <input
             type="text"
             name={"title"}
@@ -30,6 +36,8 @@ const handleSubmit = e => {
             placeholder="Paycheck"
             onChange={handleInput("title")}
         />
+    </div>
+    <div>
         <input
             type="text"
             name={"amount"}
@@ -37,6 +45,8 @@ const handleSubmit = e => {
             placeholder="Amount"
             onChange={handleInput("amount")}
         />
+    </div>
+    <div>
         <DatePicker
             name={"date"}
             placeholder="Enter recieved date"
@@ -46,6 +56,17 @@ const handleSubmit = e => {
                 setInputState({...inputState, date: date})
             }}
         />
+    </div>
+    <div>
+        <textarea 
+            name="description" 
+            value={description} 
+            id="description" 
+            placeholder="Notes" 
+            onChange={handleInput("description")}>
+        </textarea>
+    </div>
+    <div>
         <select 
             required value={category} 
             name="category" 
@@ -57,22 +78,9 @@ const handleSubmit = e => {
                 <option value="Paycheck-3">Paycheck 3</option>
                 <option value="Paycheck-4">Paycheck 4</option>
         </select>
-        <textarea 
-            name="description" 
-            value={description} 
-            id="description" 
-            placeholder="Notes" 
-            onChange={handleInput("description")}>
-        </textarea>
-        <input
-            type="text"
-            name={"title"}
-            value={title}
-            placeholder="Paycheck"
-            onChange={handleInput("title")}
-        />
+    </div>
 
-        <div className="submit-btn"></div>
+        <div className="submit-btn"> Add income</div>
     
     </form>
     </div>
