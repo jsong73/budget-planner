@@ -16,8 +16,13 @@ const handleInput = name => e => {
     setInputState({...inputState, [name]: e.target.value})
 }
 
+const handleSubmit = e => {
+    e.preventDefault();
+}
+
   return (
     <div>
+    <form onSubmit={handleSubmit}>
         <input
             type="text"
             name={"title"}
@@ -41,20 +46,24 @@ const handleInput = name => e => {
                 setInputState({...inputState, date: date})
             }}
         />
-        <input
-            type="text"
-            name={"category"}
-            value={title}
-            placeholder="Paycheck"
-            onChange={handleInput("category")}
-        />
-        <input
-            type="text"
-            name={"description"}
-            value={title}
-            placeholder="Paycheck"
-            onChange={handleInput("description")}
-        />
+        <select 
+            required value={category} 
+            name="category" 
+            id="category" 
+            onChange={handleInput("category")}>
+                <option value=""  disabled >Select Option</option>
+                <option value="Paycheck-1">Paycheck 1</option>
+                <option value="Paycheck-2">Paycheck 2</option>
+                <option value="Paycheck-3">Paycheck 3</option>
+                <option value="Paycheck-4">Paycheck 4</option>
+        </select>
+        <textarea 
+            name="description" 
+            value={description} 
+            id="description" 
+            placeholder="Notes" 
+            onChange={handleInput("description")}>
+        </textarea>
         <input
             type="text"
             name={"title"}
@@ -63,6 +72,9 @@ const handleInput = name => e => {
             onChange={handleInput("title")}
         />
 
+        <div className="submit-btn"></div>
+    
+    </form>
     </div>
   )
 }
