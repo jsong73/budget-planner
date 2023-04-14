@@ -34,5 +34,9 @@ body {
     border-radius: 5px;
     display: flex;
     display: inline-block;
-    float:left;
+    position: absolute;
+    left: 20%;
+    top:25%;
+    width: auto;
+    font-size: large;
 }

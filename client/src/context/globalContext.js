@@ -16,7 +16,9 @@ export const GlobalProvider = ({ children }) => {
             .catch((error) => {
                 setError(error.response.data.message)
             })
-    }
+            console.log(response)
+            console.log(error)
+    };
 
     return (
             <GlobalContext.Provider 

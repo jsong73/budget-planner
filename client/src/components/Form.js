@@ -1,27 +1,41 @@
 import React, { useState } from "react";
-import DatePicker from "react-datepicker"
 import { useGlobalContext } from "../context/globalContext";
 
 function Form() {
-    const { addIncome}  = useGlobalContext;
+    const { addIncome }  = useGlobalContext;
 
     const [ inputState , setInputState ] = useState({
         title: "",
         amount: "",
         date: "",
         category: "",
-        description: ""
+        description: "",
     })
 
 const { title, amount, date, category, description } = inputState;
 
+// console.log(title)
+// console.log(amount)
+// console.log(date)
+// console.log(category)
+// console.log(description)
+
 const handleInput = name => e => {
     setInputState({...inputState, [name]: e.target.value})
+
 }
 
-const handleSubmit = e => {
-    e.preventDefault();
+const handleSubmit = (event) => {
+    event.preventDefault()
     addIncome(inputState)
+    setInputState({
+        title: "",
+        amount: "",
+        date: "",
+        category: "",
+        description: "",
+    })
+    console.log(event)
 }
 
   return (
@@ -39,19 +53,18 @@ const handleSubmit = e => {
     </div>
     <div>
         <input
-            type="text"
+            type="number"
             name={"amount"}
-            value={title}
-            placeholder="Amount"
+            value={amount}
             onChange={handleInput("amount")}
         />
     </div>
     <div>
-        <DatePicker
+        <input
+            type="date"
             name={"date"}
             placeholder="Enter recieved date"
             selected={date}
-            dateFormat="dd/MM/yyyy"
             onChange={(date) => {
                 setInputState({...inputState, date: date})
             }}
