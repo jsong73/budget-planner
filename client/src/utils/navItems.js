@@ -3,25 +3,25 @@ import {home, expenses, transactions, income} from "./Icons"
 export const navItems = [
     {
         id: 1,
-        title: ' Home',
+        title: 'Home',
         icon: home,
         link: '/home'
     },
     {
         id: 2,
-        title: " View Transactions",
+        title: "View Transactions",
         icon: transactions,
         link: "/transactions",
     },
     {
         id: 3,
-        title: " Incomes",
+        title: "Incomes",
         icon: income,
         link: "/income",
     },
     {
         id: 4,
-        title: " Expenses",
+        title: "Expenses",
         icon: expenses,
         link: "/expenses",
     },

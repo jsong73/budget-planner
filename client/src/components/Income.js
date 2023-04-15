@@ -4,13 +4,16 @@ import { useGlobalContext } from "../context/globalContext";
 
 
 function Income() {
-  const { addIncome } = useGlobalContext()
+  const { addIncome , incomes, getIncomes } = useGlobalContext()
 
 
   return (
-    <div className="container form">
-        <h1>Income</h1>
-          <Form />
+    <div className="flex justify-center items-center mt-12 ">
+        <h1 className="font-bold text-3xl">Income</h1>
+          <div>         
+            <Form />
+          </div>
+ 
     </div>
   )}
 

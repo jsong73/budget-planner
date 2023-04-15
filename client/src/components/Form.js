@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { useGlobalContext } from "../context/globalContext";
 
 function Form() {
-    const { addIncome }  = useGlobalContext;
+    const { addIncome }  = useGlobalContext();
 
     const [ inputState , setInputState ] = useState({
         title: "",
@@ -22,7 +22,6 @@ const { title, amount, date, category, description } = inputState;
 
 const handleInput = name => e => {
     setInputState({...inputState, [name]: e.target.value})
-
 }
 
 const handleSubmit = (event) => {
@@ -39,15 +38,18 @@ const handleSubmit = (event) => {
 }
 
   return (
-    <div>
+    <div className="absolute w-auto top-60 left-96 ">
     <form onSubmit={handleSubmit}>
+    
+
     
     <div>
         <input
             type="text"
             name={"title"}
             value={title}
-            placeholder="Paycheck"
+            placeholder="Income type"
+            className="bg-zinc-800 mb-5 rounded-xl text-center" 
             onChange={handleInput("title")}
         />
     </div>
@@ -55,7 +57,9 @@ const handleSubmit = (event) => {
         <input
             type="number"
             name={"amount"}
+            placeholder="Amount"
             value={amount}
+            className="bg-zinc-800 mb-5 rounded-xl text-center"
             onChange={handleInput("amount")}
         />
     </div>
@@ -65,9 +69,8 @@ const handleSubmit = (event) => {
             name={"date"}
             placeholder="Enter recieved date"
             selected={date}
-            onChange={(date) => {
-                setInputState({...inputState, date: date})
-            }}
+            className="bg-zinc-800 mb-5 rounded-xl text-center w-full "
+            onChange={handleInput("date")}
         />
     </div>
     <div>
@@ -75,7 +78,8 @@ const handleSubmit = (event) => {
             name="description" 
             value={description} 
             id="description" 
-            placeholder="Notes" 
+            placeholder="Description" 
+            className="bg-zinc-800 mb-5 rounded-xl text-center w-full"
             onChange={handleInput("description")}>
         </textarea>
     </div>
@@ -84,6 +88,7 @@ const handleSubmit = (event) => {
             required value={category} 
             name="category" 
             id="category" 
+            className="bg-zinc-800 mb-5 rounded-xl text-center w-full"
             onChange={handleInput("category")}>
                 <option value=""  disabled >Select Option</option>
                 <option value="Paycheck-1">Paycheck 1</option>
@@ -93,8 +98,8 @@ const handleSubmit = (event) => {
         </select>
     </div>
 
-        <div className="submit-btn"> Add income</div>
-    
+    <button type="submit" className="mb-4 bg-zinc-800 rounded-xl w-3/4 border-solid border  w-full">Add income</button>
+
     </form>
     </div>
   )

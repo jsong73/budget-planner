@@ -6,7 +6,7 @@ function Navbar({
   setActive }) 
 {
   return (
-    <div>
+    <div className="ml-12 bottom-1/2 absolute flex">
         <ul id="nav-container">
         {navItems.map((nav) => {
             return (
@@ -17,8 +17,10 @@ function Navbar({
               onClick={() => setActive(nav.id)}
 
             > 
-              {nav.icon}
+              <div className="inline-block mr-2">{nav.icon}</div>
               {nav.title}
+       
+            
             </li>
             )
         })}
