@@ -2,7 +2,7 @@ const express = require("express");
 const app = express();
 const cors = require("cors");
 const db = require("./config/connection");
-const {readdirSync} = require("fs")
+const {readdirSync} = require("fs");
 
 const PORT = process.env.PORT || 3001;
 

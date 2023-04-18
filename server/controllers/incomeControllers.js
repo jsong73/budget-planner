@@ -33,7 +33,7 @@ exports.getIncomes = async(req, res) => {
         res.status(200).json(incomes)
     } catch (err) {
         console.log(err)
-        res.status(500).json({msg: "500 Server Error"})
+        res.status(500).json({ msg: "500 Server Error"})
     }
 }
 

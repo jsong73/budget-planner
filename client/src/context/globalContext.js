@@ -11,12 +11,11 @@ export const GlobalProvider = ({ children }) => {
     const [expenses, setExpenses ] = useState([]);
     const [error, setError] = useState(null);
 
-    const getIncomes = async ()
 
     const addIncome = async (income) => {
         try {
             const response = await axios.post(`${URL}add-income`, income);
-            console.log(response);
+            // console.log(response);
             setError(null);
         } catch (error) {
             if (error.response && error.response.data) {
@@ -27,10 +26,27 @@ export const GlobalProvider = ({ children }) => {
         }
     };
 
+    
+    const getIncomes = async () => {
+    try {
+        const response = await axios.get(`${URL}get-income`)
+        setIncomes(response.data)
+        console.log(response.data)
+        setError(null);
+    } catch (error) {
+        if (error.response && error.response.data) {
+            setError(error.response.data.message);
+        } else {
+            setError("Something went wrong.");
+        }
+    }
+};
 
+getIncomes();
     return (
             <GlobalContext.Provider 
                 value={{ 
+                    getIncomes,
                     addIncome,
                     incomes
                 }}>
