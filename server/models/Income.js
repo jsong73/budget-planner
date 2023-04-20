@@ -1,6 +1,6 @@
 const mongoose = require("mongoose");
 
-const ExpenseSchema = new mongoose.Schema({
+const IncomeSchema = new mongoose.Schema({
     title: {
         type: String,
         required: true,
@@ -21,7 +21,8 @@ const ExpenseSchema = new mongoose.Schema({
     category: {
         type: String,
         required: true,
-        trim: true
+        trim: true,
+        enum: ["Paycheck 1", "Paycheck 2", "Paycheck 3", "Paycheck 4"],
     },
     description: {
         type: String,
@@ -40,4 +41,4 @@ const ExpenseSchema = new mongoose.Schema({
     }
 )
 
-module.exports = mongoose.model("Expense", ExpenseSchema);
+module.exports = mongoose.model("Income", IncomeSchema);

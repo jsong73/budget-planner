@@ -41,8 +41,6 @@ const handleSubmit = (event) => {
     <div className="absolute w-auto top-60 left-96 ">
     <form onSubmit={handleSubmit}>
     
-
-    
     <div>
         <input
             type="text"

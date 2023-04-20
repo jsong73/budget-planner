@@ -1,60 +1,57 @@
-import React, { useState , useContext } from "react";
-import axios from "axios";
+import React, { useState, createContext, useContext } from "react";
+import axios from "axios"
+const GlobalContext = createContext();
 
-const URL = "localhost:3001/api/v1/";
+const GlobalProvider = ({ children }) => {
+  const [incomes, setIncomes] = useState([]);
+  const [error, setError] = useState(null);
 
-const GlobalContext = React.createContext();
+  // const getIncomes = async () => {
+  //   try {
+  //     const response = await fetch("http://localhost:3001/api/v1/get-incomes");
+  //     if (!response.ok) {
+  //       throw new Error("Network response was not ok");
+  //     }
+  //     const data = await response.json();
+  //     setIncomes(data);
+  //     console.log(data);
+  //   } catch (error) {
+  //     setError(error.message);
+  //   }
+  // };
+  
 
-export const GlobalProvider = ({ children }) => {
-    
-    const [incomes, setIncomes ] = useState([]);
-    const [expenses, setExpenses ] = useState([]);
-    const [error, setError] = useState(null);
 
+  // const addIncome = async (income) => {
+  //   try {
+  //     const response = await fetch("/api/v1/add-income", {
+  //       method: "POST",
+  //       headers: {
+  //         "Content-Type": "application/json",
+  //         "X-Requested-With": "XMLHttpRequest",
+  //       },
+  //       body: JSON.stringify(income)
+  //     });
+  //     if (!response.ok) {
+  //       throw new Error("Network response was not ok");
+  //     }
+  //     console.log(response);
+  //     setError(null);
+  //   } catch (error) {
+  //     console.error(error);
+  //     setError(error.message);
+  //   }
+  // };
 
-    const addIncome = async (income) => {
-        try {
-            const response = await axios.post(`${URL}add-income`, income);
-            // console.log(response);
-            setError(null);
-        } catch (error) {
-            if (error.response && error.response.data) {
-                setError(error.response.data.message);
-            } else {
-                setError("Something went wrong.");
-            }
-        }
-    };
-
-    
-    const getIncomes = async () => {
-    try {
-        const response = await axios.get(`${URL}get-income`)
-        setIncomes(response.data)
-        console.log(response.data)
-        setError(null);
-    } catch (error) {
-        if (error.response && error.response.data) {
-            setError(error.response.data.message);
-        } else {
-            setError("Something went wrong.");
-        }
-    }
+  return (
+    <GlobalContext.Provider value={{ incomes, error, addIncome }}>
+      {children}
+    </GlobalContext.Provider>
+  );
 };
 
-getIncomes();
-    return (
-            <GlobalContext.Provider 
-                value={{ 
-                    getIncomes,
-                    addIncome,
-                    incomes
-                }}>
-                {children}
-            </GlobalContext.Provider>
-    )
-}
+const useGlobalContext = () => {
+  return useContext(GlobalContext);
+};
 
-export const useGlobalContext = () => {
-    return useContext(GlobalContext)
-}
+export { GlobalProvider, useGlobalContext };

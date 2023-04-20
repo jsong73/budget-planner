@@ -8,10 +8,13 @@ function IncomeDetails({
     category, 
     description
 }) {
-  console.log(amount)
+console.log(title)
+console.log(amount)
   return (
     <div>
-
+<h1>{title}</h1>
+<h1>{title}</h1>
+<h1>{title}</h1>
     </div>
   )}
 

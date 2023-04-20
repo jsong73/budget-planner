@@ -1,6 +1,6 @@
 const mongoose = require("mongoose");
 
-const IncomeSchema = new mongoose.Schema({
+const ExpenseSchema = new mongoose.Schema({
     title: {
         type: String,
         required: true,
@@ -21,7 +21,10 @@ const IncomeSchema = new mongoose.Schema({
     category: {
         type: String,
         required: true,
-        trim: true
+        trim: true,
+        enum: ["House", "Entertainment", "Subscriptions", "Pets", "Transportation", "Insurance", 
+        "Personal Care", "Loans", "Savings", "Investments", "Gifts", "Cellphone", "Vacation", 
+         "Other"],
     },
     description: {
         type: String,
@@ -29,6 +32,10 @@ const IncomeSchema = new mongoose.Schema({
         trim: true,
         maxLength: 50
     },
+    user: {
+        type: Schema.Types.ObjectId,
+        ref: "User",
+      },
 }, 
     {
     toJSON: {
@@ -40,4 +47,4 @@ const IncomeSchema = new mongoose.Schema({
     }
 )
 
-module.exports = mongoose.model("Income", IncomeSchema);
+module.exports = mongoose.model("Expense", ExpenseSchema);

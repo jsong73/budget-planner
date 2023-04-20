@@ -4,11 +4,11 @@ import { useGlobalContext } from "../context/globalContext";
 import IncomeDetails from "./IncomeDetails";
 
 function Income() {
-  const { addIncome , incomes, getIncomes } = useGlobalContext();
+  const { addIncome , incomes } = useGlobalContext();
 
-  useEffect(() => {
-    getIncomes();
-  })
+  // useEffect(() => {
+  //   getIncomes();
+  // }, [])
 
 
   return (
