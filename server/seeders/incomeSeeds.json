@@ -1,0 +1,30 @@
+[
+    {
+      "Title": "Paycheck 2",
+      "amount": "500",
+      "date": "4/20/23",
+      "category": "Paycheck 2",
+      "description": "paycheck for April"
+    },
+    {
+        "Title": "Paycheck 1",
+        "amount": "500",
+        "date": "4/01/23",
+        "category": "Paycheck 1",
+        "description": "paycheck for April"
+    },
+    {
+        "Title": "Paycheck 3",
+        "amount": "500",
+        "date": "4/13/23",
+        "category": "Paycheck 3",
+        "description": "paycheck for April"
+    },
+    {
+        "Title": "Bonus",
+        "amount": "600",
+        "date": "4/01/23",
+        "category": "Other",
+        "description": "Begining of year bonus"
+    }
+  ]
