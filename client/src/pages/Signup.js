@@ -2,7 +2,7 @@ import React, {useState} from "react";
 import SignupModal from "../components/SignupModal"
 import Modal from "react-modal"
 import { close } from "../utils/Icons"
-
+import Auth from "../utils/auth"
 
 const customStyles = {
     content: {
@@ -32,11 +32,14 @@ function Signup() {
         setIsOpen(false);
     }
 
+const isLoggedIn = Auth.loggedIn();
+
   return (
     <div className="absolute top-0 right-0 mr-30">
-            <button
-                onClick={openModal}> Signup
+        {isLoggedIn ? null :
+            <button onClick={openModal}> Signup
             </button>
+        }
 
             <Modal 
                 isOpen={modalIsOpen} 

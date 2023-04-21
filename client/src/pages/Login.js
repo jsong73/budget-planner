@@ -42,9 +42,11 @@ function Login() {
 
   return (
     <div className="absolute top-0 right-0 mr-20">
-            <button
-                onClick={openModal}> Login
-            </button>
+      {isLoggedIn ? (
+        <button onClick={logout}>Logout</button>
+      ) : (
+        <button onClick={openModal}>Login</button>
+      )}
 
             <Modal 
                 isOpen={modalIsOpen} 
