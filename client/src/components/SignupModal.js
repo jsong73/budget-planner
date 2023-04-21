@@ -1,16 +1,16 @@
 import React , { useState } from "react";
-import { LOGIN_USER } from "../utils/mutations";
+import { ADD_USER} from "../utils/mutations";
 import { useMutation } from "@apollo/client";
 import Auth from "../utils/auth"
 
-const LoginModal = (props) => {
+const SignupModal = (props) => {
 
     const [formState, setFormState] = useState({
         email: "",
         password: "",
       });
     
-      const [login, {error}] = useMutation(LOGIN_USER);
+      const [addUser, {error}] = useMutation(ADD_USER);
     
       const handleChange = (event) => {
         const {name, value} = event.target;
@@ -25,34 +25,34 @@ const LoginModal = (props) => {
         event.preventDefault();
 
         try{
-          const { data } = await login({
+          const { data } = await addUser({
             variables: {...formState}});
         //console.log(data)
         
-        Auth.login(data.login.token);
+        Auth.login(data.addUser.token);
           
         setFormState({
             email: "",
             password: "",
         });
         //set state to true when login success
-        setLoginSuccess(true);
+        setSignupSuccess(true);
 
         } catch (error) {
-        setErrorMessage("Incorrect credentials")
+        setErrorMessage("Email already exists.")
         console.log(error)
         }
     };
 
 //state for success message
-const [loginSuccess, setLoginSuccess] = useState(false);
+const [signupSuccess, setSignupSuccess] = useState(false);
 //initially sets error message to empty string
 const [errorMessage, setErrorMessage] = useState("");
 
   return (
     <div className="p-5 max-w-sm mx-auto">
 
-     <h1 className="font-bold text-2xl mb-6">Login</h1>
+     <h1 className="font-bold text-2xl mb-6">Signup</h1>
         
          <form onSubmit={formHandler}>
 
@@ -80,8 +80,8 @@ const [errorMessage, setErrorMessage] = useState("");
               
             {errorMessage ? (
               <div className="text-red-900 text-base float-left"> {errorMessage} </div>
-            ) : loginSuccess ? (
-            <div className="text-green-900 text-base float-left"> Login success </div>
+            ) : signupSuccess ? (
+            <div className="text-green-900 text-base float-left"> Successfully created an account </div>
             ) : null}
             
             <button 
@@ -94,4 +94,4 @@ const [errorMessage, setErrorMessage] = useState("");
   )}
 
 
-export default LoginModal;
+export default SignupModal;

@@ -2,6 +2,7 @@ import React, {useState} from "react";
 import LoginModal from "../components/LoginModal"
 import Modal from "react-modal"
 import { close } from "../utils/Icons"
+import Auth from "../utils/auth"
 
 
 const customStyles = {
@@ -30,6 +31,13 @@ function Login() {
       
     function closeModal() {
         setIsOpen(false);
+    }
+
+    const isLoggedIn = Auth.loggedIn();
+
+    const logout = (event) => {
+        event.preventDefault();
+        Auth.logout(); 
     }
 
   return (
