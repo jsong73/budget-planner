@@ -1,13 +1,13 @@
 [
     {
-        "Title": "Paycheck 1",
+        "title": "Paycheck 1",
         "amount": "4000",
         "date": "4/01/23",
         "category": "Paycheck",
         "description": "paycheck for April"
     },
     {
-        "Title": "Bonus",
+        "title": "Bonus",
         "amount": "600",
         "date": "4/18/23",
         "category": "Bonus",
