@@ -1,6 +1,6 @@
-const { User, Expense, Income } = require("./models");
+const { User, Expense, Income } = require("../models");
 const { AuthenticationError } = require("apollo-server-express");
-const { signToken } = require("./utils/auth");
+const { signToken } = require("../utils/auth");
 
 const resolvers = {
 Query: {
@@ -44,7 +44,7 @@ Mutation:{
     },
     login: async (parent, { email, password }) => {
         const user = await User.findOne({ email });
-  
+        
         if (!user) {
           throw new AuthenticationError("No user found with this email!");
         }

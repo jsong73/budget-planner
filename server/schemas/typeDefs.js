@@ -12,21 +12,19 @@ const typeDefs = gql`
   type Expense {
     _id: ID
     title: String
-    amount: Float
+    amount: String
     date: String
     category: String
     description: String
-    user: User
   }
   
   type Income {
     _id: ID
     title: String
-    amount: Float
+    amount: String
     date: String
     category: String
     description: String
-    user: User
   }
 
 
@@ -37,19 +35,19 @@ const typeDefs = gql`
 
   type Query {
     users: [User]
-    user(username: String!): User
-    expenses(username: String): [Expense]
+    user(email: String!): User
+    expenses(email: String): [Expense]
     expense(expenseId: ID!): Expense
-    incomes(username: String): [Income]
+    incomes(email: String): [Income]
     income(incomeId: ID!): Income
     me: User
   }
-  
+
   type Mutation {
-    addUser(username: String!, email: String!, password: String!): Auth
+    addUser(email: String!, password: String!): Auth
     login(email: String!, password: String!): Auth
-    addExpense(title: String!, amount: Float!, date: String!, category: String!, description: String!): Expense
-    addIncome(title: String!, amount: Float!, date: String!, category: String!, description: String!): Income
+    addExpense(title: String!, amount: String!, date: String!, category: String!, description: String!): Expense
+    addIncome(title: String!, amount: String!, date: String!, category: String!, description: String!): Income
     removeExpense(expenseId: ID!): Expense
     removeIncome(incomeId: ID!): Income
   }
