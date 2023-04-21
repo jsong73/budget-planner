@@ -1,4 +1,7 @@
-import React from "react";
+import React , { useState } from "react";
+import { LOGIN_USER } from "../utils/mutations";
+import { useMutation } from "@apollo/client";
+import Auth from "../utils/auth"
 
 const LoginModal = (props) => {
 
@@ -18,7 +21,7 @@ const LoginModal = (props) => {
         });
       };
     
-      const loginFormHandler = async (event) => {
+      const formHandler = async (event) => {
         event.preventDefault();
         try{
           const { data } = await login({
@@ -41,11 +44,10 @@ const LoginModal = (props) => {
 
      <h1>Login</h1>
         
-         <form onSubmit={loginFormHandler}>
+         <form onSubmit={formHandler}>
 
             <label> Email </label>
               <input
-               placeholder="Email"
                name="email"
                type="email"
                value={formState.email}
