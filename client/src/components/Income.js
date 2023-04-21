@@ -1,10 +1,7 @@
-import React, { useEffect } from "react";
 import Form from "../components/Form"
-import { useGlobalContext } from "../context/globalContext";
 import IncomeDetails from "./IncomeDetails";
 
 function Income() {
-  const { addIncome , incomes } = useGlobalContext();
 
   // useEffect(() => {
   //   getIncomes();
@@ -14,7 +11,7 @@ function Income() {
   return (
     <div className="flex justify-center items-center mt-12 ">
         <h1 className="font-bold text-3xl">Income</h1>
-          <div>         
+          {/* <div>         
             <Form />
 
             {incomes.map((income) => {
@@ -30,7 +27,7 @@ function Income() {
               />
             })}
           </div>
- 
+  */}
     </div>
   )}
 

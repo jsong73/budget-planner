@@ -1,8 +1,6 @@
 import React, { useState } from "react";
-import { useGlobalContext } from "../context/globalContext";
 
 function Form() {
-    const { addIncome }  = useGlobalContext();
 
     const [ inputState , setInputState ] = useState({
         title: "",
@@ -26,7 +24,7 @@ const handleInput = name => e => {
 
 const handleSubmit = (event) => {
     event.preventDefault()
-    addIncome(inputState)
+    // addIncome(inputState)
     setInputState({
         title: "",
         amount: "",

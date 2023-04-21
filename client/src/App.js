@@ -1,18 +1,16 @@
 import React, { useState } from 'react';
-import './App.css';
+
 import Navbar from './components/Navbar';
 import Home from "./components/Home"
 import Transactions from './components/Transactions';
 import Income from "./components/Income";
 import Expenses from './components/Expenses';
-import { useGlobalContext } from './context/globalContext';
 
+import "./App.css";
+import"./index.css"
 
 function App() {
    const [ active, setActive ] = useState(1);
-
-   const global = useGlobalContext()
-   console.log(global);
 
   //switch case
    const displayData = () => {
