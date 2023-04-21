@@ -1,0 +1,20 @@
+*{
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    background-color: rgb(31, 29, 29);
+}
+
+body {
+    font-family: 'Inter', sans-serif;
+    font-size: 20px;
+    color: rgb(189, 189, 189);
+}
+
+.active{
+    color: white;
+}
+
+.modal-overlay {
+    background-color: rgba(0, 0, 0, 0.5);
+  }

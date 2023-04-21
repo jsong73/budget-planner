@@ -1,13 +1,43 @@
 import React, { useState } from 'react';
 
 import Navbar from './components/Navbar';
-import Home from "./components/Home"
-import Transactions from './components/Transactions';
-import Income from "./components/Income";
-import Expenses from './components/Expenses';
+import Home from "./pages/Home"
+import Transactions from './pages/Transactions';
+import Income from "./pages/Income";
+import Expenses from './pages/Expenses';
+import Login from "./pages/Login"
+import Signup from "./pages/Signup"
+import { setContext } from "@apollo/client/link/context";
+
+import {
+  ApolloClient,
+  InMemoryCache,
+  ApolloProvider,
+  createHttpLink,
+} from "@apollo/client";
 
 import "./App.css";
 import"./index.css"
+
+const httpLink = createHttpLink({
+  uri: "/graphql",
+});
+
+const authLink = setContext ((_, { headers }) => {
+  const token = localStorage.getItem("id_token");
+  return {
+    headers: {
+      ...headers,
+      authorization: token ? `Bearer ${token}` : "",
+    },
+  };
+});
+
+const client = new ApolloClient({
+  link: authLink.concat(httpLink),
+  cache: new InMemoryCache(),
+});
+
 
 function App() {
    const [ active, setActive ] = useState(1);
@@ -31,8 +61,17 @@ function App() {
 
   return (
     <div className="App">
-        <Navbar active={active} setActive={setActive}/>
-        {displayData()}
+    <ApolloProvider client={client}>
+          
+            <Navbar active={active} setActive={setActive}/>
+            {displayData()}
+       
+            <Signup />
+
+            <Login />
+            
+    </ApolloProvider>
+
     </div>
   );
 }

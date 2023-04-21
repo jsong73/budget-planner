@@ -3,7 +3,8 @@ import { navItems } from "../utils/navItems.js"
 
 function Navbar({ 
   active, 
-  setActive }) 
+  setActive 
+}) 
 {
   return (
     <div className="ml-12 bottom-1/2 absolute flex">

@@ -1,5 +1,5 @@
 import Form from "../components/Form"
-import IncomeDetails from "./IncomeDetails";
+import IncomeDetails from "../components/IncomeDetails";
 
 function Income() {
 
