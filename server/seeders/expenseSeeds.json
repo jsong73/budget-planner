@@ -1,0 +1,23 @@
+[
+    {
+      "title": "Rent",
+      "amount": "1500",
+      "date": "4/10/23",
+      "category": "Housing",
+      "description": "House payment"
+    },
+    {
+        "title": "Groceries",
+        "amount": "400",
+        "date": "4/23/23",
+        "category": "Food",
+        "description": "April groceries"
+      },
+      {
+        "title": "Stocks",
+        "amount": "100",
+        "date": "4/25/23",
+        "category": "Investments",
+        "description": "Acorn account"
+      }
+  ]

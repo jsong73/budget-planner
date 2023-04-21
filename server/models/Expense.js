@@ -22,9 +22,6 @@ const ExpenseSchema = new mongoose.Schema({
         type: String,
         required: true,
         trim: true,
-        enum: ["House", "Entertainment", "Subscriptions", "Pets", "Transportation", "Insurance", 
-        "Personal Care", "Loans", "Savings", "Investments", "Gifts", "Cellphone", "Vacation", 
-         "Other"],
     },
     description: {
         type: String,
@@ -32,10 +29,6 @@ const ExpenseSchema = new mongoose.Schema({
         trim: true,
         maxLength: 50
     },
-    user: {
-        type: Schema.Types.ObjectId,
-        ref: "User",
-      },
 }, 
     {
     toJSON: {

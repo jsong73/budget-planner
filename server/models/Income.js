@@ -22,7 +22,6 @@ const IncomeSchema = new mongoose.Schema({
         type: String,
         required: true,
         trim: true,
-        enum: ["Paycheck 1", "Paycheck 2", "Paycheck 3", "Paycheck 4", "Other"],
     },
     description: {
         type: String,
