@@ -4,9 +4,6 @@ const { signToken } = require("../utils/auth");
 
 const resolvers = {
 Query: {
-    users: async () => {
-      return User.find().populate("expenses").populate("incomes");
-    },
     user: async (parent, { email }) => {
       return User.findOne({ email }).populate("expenses").populate("incomes");
     },
@@ -73,13 +70,12 @@ Mutation:{
         }
         throw new AuthenticationError("You need to be logged in!");
       },
-    addIncome: async (parent,{ title, amount, date, category, description }, context) => {
+    addIncome: async (parent,{ title, amount, date, description }, context) => {
         if (context.user) {
           const income = await Income.create({
             title,
             amount,
             date,
-            category,
             description,
             user: context.user._id,
           });

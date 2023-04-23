@@ -23,7 +23,6 @@ const typeDefs = gql`
     title: String
     amount: String
     date: String
-    category: String
     description: String
   }
 
@@ -34,7 +33,6 @@ const typeDefs = gql`
   }
 
   type Query {
-    users: [User]
     user(email: String!): User
     expenses(email: String): [Expense]
     expense(expenseId: ID!): Expense
@@ -47,7 +45,7 @@ const typeDefs = gql`
     addUser(email: String!, password: String!): Auth
     login(email: String!, password: String!): Auth
     addExpense(title: String!, amount: String!, date: String!, category: String!, description: String!): Expense
-    addIncome(title: String!, amount: String!, date: String!, category: String!, description: String!): Income
+    addIncome(title: String!, amount: String!, date: String!, description: String!): Income
     removeExpense(expenseId: ID!): Expense
     removeIncome(incomeId: ID!): Income
   }
