@@ -1,6 +1,13 @@
 import React, { useState } from "react";
+import Auth from "../utils/auth"
+import { ADD_INCOME } from "../utils/mutations";
+import {useMutation} from "@apollo/client"
+
+const userId = Auth.getProfile()?.data?._id;
 
 function Form() {
+
+    const [addIncome] = useMutation(ADD_INCOME)
 
     const [ inputState , setInputState ] = useState({
         title: "",
@@ -8,23 +15,22 @@ function Form() {
         date: "",
         category: "",
         description: "",
-    })
+        userId: userId,
+    });
 
-const { title, amount, date, category, description } = inputState;
-
-// console.log(title)
-// console.log(amount)
-// console.log(date)
-// console.log(category)
-// console.log(description)
-
-const handleInput = name => e => {
-    setInputState({...inputState, [name]: e.target.value})
-}
+    const handleChange = (event) => {
+        const { name, value } = event.target;
+        setInputState((prevState) => {
+            return{
+            ...prevState,
+            [name]: value,
+        }
+      });
+    };
 
 const handleSubmit = (event) => {
     event.preventDefault()
-    // addIncome(inputState)
+
     setInputState({
         title: "",
         amount: "",
@@ -35,6 +41,21 @@ const handleSubmit = (event) => {
     console.log(event)
 }
 
+const formHandler = async (event) => {
+    event.preventDefault();
+      try{
+          const { data } = await addIncome({
+              variables: {
+              ...inputState,
+              }
+          });
+          console.log(data)
+          window.location.reload();
+      } catch (error) {
+          console.log(error)
+      };
+  };
+
   return (
     <div className="absolute w-auto top-60 left-96 ">
     <form onSubmit={handleSubmit}>
@@ -42,50 +63,51 @@ const handleSubmit = (event) => {
     <div>
         <input
             type="text"
-            name={"title"}
-            value={title}
+            name="title"
+            value={inputState.title}
             placeholder="Income type"
             className="bg-zinc-800 mb-5 rounded-xl text-center" 
-            onChange={handleInput("title")}
+            onChange={handleChange}
         />
     </div>
     <div>
         <input
             type="number"
-            name={"amount"}
+            name="amount"
             placeholder="Amount"
-            value={amount}
+            value={inputState.amount}
             className="bg-zinc-800 mb-5 rounded-xl text-center"
-            onChange={handleInput("amount")}
+            onChange={handleChange}
         />
     </div>
     <div>
         <input
             type="date"
-            name={"date"}
+            name="date"
             placeholder="Enter recieved date"
-            selected={date}
+            // selected={date}
+            value={inputState.date}
             className="bg-zinc-800 mb-5 rounded-xl text-center w-full "
-            onChange={handleInput("date")}
+            onChange={handleChange}
         />
     </div>
     <div>
         <textarea 
             name="description" 
-            value={description} 
+            value={inputState.description} 
             id="description" 
             placeholder="Description" 
             className="bg-zinc-800 mb-5 rounded-xl text-center w-full"
-            onChange={handleInput("description")}>
+            onChange={handleChange}>
         </textarea>
     </div>
     <div>
         <select 
-            required value={category} 
+            // required value={category} 
             name="category" 
             id="category" 
             className="bg-zinc-800 mb-5 rounded-xl text-center w-full"
-            onChange={handleInput("category")}>
+            onChange={handleChange}>
                 <option value=""  disabled >Select Option</option>
                 <option value="Paycheck-1">Paycheck 1</option>
                 <option value="Paycheck-2">Paycheck 2</option>
@@ -94,7 +116,11 @@ const handleSubmit = (event) => {
         </select>
     </div>
 
-    <button type="submit" className="mb-4 bg-zinc-800 rounded-xl w-3/4 border-solid border  w-full">Add income</button>
+    <button 
+        type="submit" 
+        onClick={formHandler}
+        className="mb-4 bg-zinc-800 rounded-xl w-full border-solid border"> Add income
+    </button>
 
     </form>
     </div>

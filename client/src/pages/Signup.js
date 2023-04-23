@@ -35,7 +35,7 @@ function Signup() {
 const isLoggedIn = Auth.loggedIn();
 
   return (
-    <div className="absolute top-0 right-0 mr-30">
+    <div className="absolute top-5 right-3 mr-35">
         {isLoggedIn ? null :
             <button onClick={openModal}> Signup
             </button>

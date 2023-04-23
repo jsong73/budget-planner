@@ -1,7 +1,8 @@
 import React, {useState} from "react";
-import LoginModal from "../components/LoginModal"
-import Modal from "react-modal"
-import { close } from "../utils/Icons"
+import LoginModal from "../components/LoginModal";
+import Modal from "react-modal";
+import { close } from "../utils/Icons";
+import { logoutIcon } from "../utils/Icons"
 import Auth from "../utils/auth"
 
 
@@ -41,9 +42,14 @@ function Login() {
     }
 
   return (
-    <div className="absolute top-0 right-0 mr-20">
+    <div className="absolute top-5 right-4 mr-20">
       {isLoggedIn ? (
-        <button onClick={logout}>Logout</button>
+        <div className="flex items-center">
+            <button 
+                className="mr-2"
+                onClick={logout}>Logout</button> 
+                {logoutIcon}
+        </div>
       ) : (
         <button onClick={openModal}>Login</button>
       )}

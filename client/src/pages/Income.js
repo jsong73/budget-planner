@@ -1,5 +1,5 @@
 import Form from "../components/Form"
-import IncomeDetails from "../components/IncomeDetails";
+
 
 function Income() {
 
@@ -11,10 +11,10 @@ function Income() {
   return (
     <div className="flex justify-center items-center mt-12 ">
         <h1 className="font-bold text-3xl">Income</h1>
-          {/* <div>         
+          <div>         
             <Form />
 
-            {incomes.map((income) => {
+            {/* {incomes.map((income) => {
               const {_id, title, amount, date, category, description} = income;
               return <IncomeDetails
               key={_id}
@@ -25,9 +25,9 @@ function Income() {
               category={category}
               description={description}
               />
-            })}
+            })} */}
           </div>
-  */}
+ 
     </div>
   )}
 
