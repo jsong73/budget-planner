@@ -23,9 +23,9 @@ Query: {
     },
     me: async (parent, args, context) => {
       if (context.user) {
-        const user = await User.findOne({ email: context.user.email }).populate(
-          "expenses"
-        );
+        const user = await User.findOne({ email: context.user.email })
+        .populate("incomes")
+        .populate("expenses");
         return user;
       }
       throw new AuthenticationError("You need to be logged in!");

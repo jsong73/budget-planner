@@ -1,22 +1,18 @@
 import IncomeForm from "../components/IncomeForm"
-import IncomeDetails from "../components/IncomeDetails"
+// import IncomeDetails from "../components/IncomeDetails"
 import { useQuery } from "@apollo/client";
 import { QUERY_ME } from "../utils/queries"
 
 
 function Income() {
 
-  const {loading, data} = useQuery(QUERY_ME)
-  
-  console.log("loading:", loading);
-  console.log("data:", data);
-
+  const {loading, data, error} = useQuery(QUERY_ME)
 
   if (loading) {
     return <div> loading... </div>;
 }
 
-  const incomes = data?.me?.income || [];
+  const incomes = data.me || [];
   console.log(incomes)
 
   return (
