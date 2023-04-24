@@ -1,4 +1,5 @@
 const mongoose = require("mongoose");
+const dateFormat = require("../utils/dateFormat");
 
 const IncomeSchema = new mongoose.Schema({
     title: {
@@ -17,6 +18,7 @@ const IncomeSchema = new mongoose.Schema({
         type: Date,
         required: true,
         default: Date.now,
+        get: (timestamp) => dateFormat(timestamp),
     },
     description: {
         type: String,

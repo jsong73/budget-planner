@@ -1,5 +1,5 @@
 import IncomeForm from "../components/IncomeForm"
-// import IncomeDetails from "../components/IncomeDetails"
+import IncomeDetails from "../components/IncomeDetails"
 import { useQuery } from "@apollo/client";
 import { QUERY_ME } from "../utils/queries"
 
@@ -12,7 +12,7 @@ function Income() {
     return <div> loading... </div>;
 }
 
-  const incomes = data.me || [];
+  const incomes = data?.me?.incomes || [];
   console.log(incomes)
 
   return (
@@ -20,7 +20,7 @@ function Income() {
         <h1 className="font-bold text-3xl">Income</h1>
           <div>         
             <IncomeForm />
-{/* 
+
             {incomes.map((income) => {
               const {_id, title, amount, date, description} = income;
               return <IncomeDetails
@@ -31,7 +31,7 @@ function Income() {
               date={date}
               description={description}
               />
-            })} */}
+            })}
           </div>
  
     </div>
