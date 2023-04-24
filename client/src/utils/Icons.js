@@ -5,7 +5,8 @@ import { FaRegWindowClose } from "react-icons/fa"
 import { MdLogout } from "react-icons/md"
 import { RiMoneyDollarCircleLine } from "react-icons/ri";
 import { MdOutlineDateRange } from "react-icons/md";
-import { BiMessageDetail } from "react-icons/bi"
+import { BiMessageDetail } from "react-icons/bi";
+import { TbPigMoney } from "react-icons/tb";
 
 
 //nav icons
@@ -18,5 +19,6 @@ export const expenses = <FiMinusCircle /> ;
 export const close = <FaRegWindowClose /> ;
 export const logoutIcon = <MdLogout />;
 export const money = <RiMoneyDollarCircleLine />;
-export const calender = <MdOutlineDateRange />
-export const detail = <BiMessageDetail />
+export const calender = <MdOutlineDateRange />;
+export const detail = <BiMessageDetail />;
+export const profit = <TbPigMoney />
