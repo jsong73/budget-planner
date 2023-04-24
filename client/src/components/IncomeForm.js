@@ -5,7 +5,7 @@ import {useMutation} from "@apollo/client"
 
 const userId = Auth.getProfile()?.data?._id;
 
-function Form() {
+function IncomeForm() {
 
     const [addIncome] = useMutation(ADD_INCOME)
 
@@ -117,4 +117,4 @@ const formHandler = async (event) => {
   )
 }
 
-export default Form;
+export default IncomeForm;

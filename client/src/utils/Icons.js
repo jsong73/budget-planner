@@ -3,6 +3,7 @@ import { FaAmazonPay } from "react-icons/fa";
 import { RxDashboard } from "react-icons/rx";
 import { FaRegWindowClose } from "react-icons/fa"
 import { MdLogout } from "react-icons/md"
+import { RiMoneyDollarCircleLine } from "react-icons/ri"
 
 //nav icons
 export const home = <RxDashboard /> ;
@@ -13,3 +14,4 @@ export const expenses = <FiMinusCircle /> ;
 //modal icons
 export const close = <FaRegWindowClose /> ;
 export const logoutIcon = <MdLogout />;
+export const money = <RiMoneyDollarCircleLine />;
