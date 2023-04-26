@@ -6,7 +6,7 @@ import {useMutation} from "@apollo/client"
 const userId = Auth.getProfile()?.data?._id;
 
 function IncomeForm() {
-
+    const [errorMsg, setErrorMsg] = useState("");
     const [addIncome] = useMutation(ADD_INCOME)
 
     const [ inputState , setInputState ] = useState({
@@ -27,38 +27,46 @@ function IncomeForm() {
       });
     };
 
-const handleSubmit = (event) => {
+const formHandler = async (event) => {
     event.preventDefault();
+
+    const { title, amount, date } = inputState;
+
+    if (!title || !amount || !date) {
+      setErrorMsg("Income source, amount, and date field are required.");
+      return;
+    }
+
+    //if no description => return no added notes
+    const description = inputState.description || "No added notes."
+      try{
+          const { data } = await addIncome({
+              variables: {
+              ...inputState,
+              description: description
+              }
+          });
+          console.log(data)
 
     setInputState({
         title: "",
         amount: "",
         date: "",
         description: "",
-        userId: userId
-    })
-    console.log(event);
-}
-
-
-const formHandler = async (event) => {
-    event.preventDefault();
-      try{
-          const { data } = await addIncome({
-              variables: {
-              ...inputState,
-              }
-          });
-          console.log(data)
-          window.location.reload();
-      } catch (error) {
-          console.log(error)
-      };
+        userId: userId,
+    });
+        setErrorMsg("");
+        window.location.reload();
+    } catch (error) {
+        console.log(error)
+    };
   };
+
+
 
   return (
     <div className="absolute w-auto top-60 left-96 ">
-    <form onSubmit={handleSubmit}>
+    <form onSubmit={formHandler}>
     
     <div>
         <input
@@ -106,6 +114,8 @@ const formHandler = async (event) => {
         </textarea>
     </div>
 
+    {errorMsg && <p className="text-red-900 mb-3">{errorMsg}</p>}
+
     <button 
         type="submit" 
         onClick={formHandler}
@@ -113,7 +123,11 @@ const formHandler = async (event) => {
     </button>
 
     </form>
+
+
     </div>
+
+    
   )
 }
 

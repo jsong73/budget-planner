@@ -27,7 +27,7 @@ export const ADD_USER = gql`
 `;
 
 export const ADD_INCOME = gql`
-    mutation addIncome($title: String!, $amount: String!, $date: String!, $description: String!){
+    mutation addIncome($title: String!, $amount: String!, $date: String!, $description: String){
         addIncome(title: $title, amount: $amount, date: $date, description: $description) {
             _id
             amount
