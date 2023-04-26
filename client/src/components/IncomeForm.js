@@ -31,14 +31,32 @@ const formHandler = async (event) => {
     event.preventDefault();
 
     const { title, amount, date } = inputState;
-
-    if (!title || !amount || !date) {
-      setErrorMsg("Income source, amount, and date field are required.");
+    //input field validations
+    if (!title) {
+      setErrorMsg("Income source field is required");
       return;
     }
 
+    if (!amount || amount <= 0) {
+      setErrorMsg("Amount field is required");
+      return;
+    }
+    if (!date) {
+      setErrorMsg("Date field is required");
+      return;
+    }
+
+    // Check if date is in the future
+    const today = new Date();
+    const inputDate = new Date(date);
+    if (inputDate > today) {
+    setErrorMsg("Date must not be in the future");
+    return;
+    }
+    
     //if no description => return no added notes
     const description = inputState.description || "No added notes."
+    
       try{
           const { data } = await addIncome({
               variables: {
@@ -48,6 +66,7 @@ const formHandler = async (event) => {
           });
           console.log(data)
 
+    //resets form inputs
     setInputState({
         title: "",
         amount: "",
@@ -55,8 +74,11 @@ const formHandler = async (event) => {
         description: "",
         userId: userId,
     });
-        setErrorMsg("");
-        window.location.reload();
+    
+    setErrorMsg("");
+    
+    window.location.reload();
+
     } catch (error) {
         console.log(error)
     };
@@ -65,7 +87,7 @@ const formHandler = async (event) => {
 
 
   return (
-    <div className="absolute w-auto top-60 left-96 ">
+    <div className="absolute w-auto left-1/2 transform -translate-x-1/2 sm:top-60 sm:left-96 lg:left-1/4">
     <form onSubmit={formHandler}>
     
     <div>

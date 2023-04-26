@@ -42,7 +42,7 @@ function Login() {
     }
 
   return (
-    <div className="absolute top-5 right-4 mr-20">
+    <div className="absolute top-5 right-4 md:right-20 md:top-5 mr-2">
       {isLoggedIn ? (
         <div className="flex items-center">
             <button 

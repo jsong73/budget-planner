@@ -21,13 +21,12 @@ function Income() {
   // console.log(totalIncome)
 
   return (
-    <div className="flex flex-col justify-center items-center min-h-screen py-12 ">
-        <h1 className="font-bold text-3xl">Income</h1>
-          <div className="w-full max-w-lg mt-6">  
+    <div className="flex flex-col items-center justify-center mt-12">
+        <h1 className="font-bold text-3xl mb-4">Income</h1>
+        <div>
+
             <IncomeForm />
-            </div>
-            
-            <div className="w-full max-w-lg mt-6">
+       
             {incomes.map((income) => {
               const {_id, title, amount, date, description} = income;
               return <IncomeDetails
@@ -42,7 +41,7 @@ function Income() {
           </div>
           
           <div className="w-full max-w-lg mt-auto border-t border-gray-300 pt-4">
-              <h2 className="font-bold text-2xl text-center">Total income: ${totalIncome.toFixed(2)}</h2>
+              <h2 className="font-bold text-2xl">Total income: ${totalIncome.toFixed(2)}</h2>
           </div>
     </div>
   )}

@@ -16,8 +16,8 @@ function IncomeDetails({
 // console.log(description)
 
   return (
- 
-    <div className="border border-white rounded-lg shadow p-4 mb-4 w-full ml-12">
+
+    <div className="border border-white rounded-lg p-4 mb-4 w-full mx-auto">
 
       <div className="flex items-center">
         {profit}
@@ -27,7 +27,7 @@ function IncomeDetails({
 
       <div className="flex items-center">
         {money}
-          <h1 className="ml-3"> ${amount} </h1>
+          <h1 className="font-bold text-xl ml-3"> ${amount} </h1>
       </div>
 
 
@@ -41,7 +41,6 @@ function IncomeDetails({
       {detail} 
         <div className="ml-3">{description}</div>
     </div>
-
 
     </div>
   )}

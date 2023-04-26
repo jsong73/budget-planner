@@ -7,8 +7,8 @@ function Navbar({
 }) 
 {
   return (
-    <div className="ml-12 bottom-1/2 absolute flex">
-        <ul id="nav-container">
+    <div className="md:ml-12 md:bottom-1/2 md:absolute flex flex-col md:flex-row">
+        <ul id="nav-container" className="md:mr-10 ">
         {navItems.map((nav) => {
             return (
             <li 
