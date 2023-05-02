@@ -17,32 +17,34 @@ function IncomeDetails({
 
   return (
 
-    <div className="border border-white rounded-lg p-4 mb-4 w-full mx-auto">
+  <div className="flex w-full h-32 ml-80">
+    <div className="border border-white rounded-lg p-4 mb-4 flex w-full">
 
       <div className="flex items-center">
         {profit}
-          <h1 className="font-bold text-xl ml-3"> {title} </h1>
+          <h1 className="font-bold text-xl ml-1 mr-2"> {title} </h1>
       </div>
 
 
       <div className="flex items-center">
         {money}
-          <h1 className="font-bold text-xl ml-3"> ${amount} </h1>
+        <h1 className="text-xl ml-1 mr-2"> ${amount} </h1>
       </div>
 
 
     <div className="flex items-center">
       {calender} 
-        <div className="ml-3">{date}</div>
+        <div className="ml-1 mr-2">{date}</div>
     </div>
    
 
     <div className="flex items-center">
       {detail} 
-        <div className="ml-3">{description}</div>
+        <div className="ml-1 ">{description}</div>
     </div>
 
     </div>
+  </div>
   )}
 
 
