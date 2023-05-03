@@ -17,7 +17,7 @@ function IncomeDetails({
 
   return (
 
-  <div className="flex w-full h-32 ml-80">
+  <div className="flex w-full h-32 ml-80 sm:right-60">
     <div className="border border-white rounded-lg p-4 mb-4 flex w-full">
 
       <div className="flex items-center">

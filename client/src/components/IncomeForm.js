@@ -87,7 +87,7 @@ const formHandler = async (event) => {
 
 
   return (
-    <div className="absolute w-auto left-1/2 transform -translate-x-1/2 sm:top-60 sm:left-96 lg:left-1/4 lg:ml-12">
+    <div className="mt-8 absolute w-auto left-1/2 transform -translate-x-1/2 sm:top-60 sm:left-96 lg:left-1/4 lg:ml-12">
     <form onSubmit={formHandler}>
     
     <div>
