@@ -9,25 +9,31 @@ import { useState } from "react";
 function Income() {
 
   const [selectedMonth, setSelectedMonth] = useState(null);
+  const [selectedYear, setSelectedYear] = useState(null);
+
   const {loading, data } = useQuery(QUERY_ME)
 
   if (loading) {
     return <div> loading... </div>;
-}
+  }
 
   const incomes = data?.me?.incomes || [];
   // console.log(incomes)
 
+
   // filtering incomes based on selected month
   //used .substring (0,3) since my months return shortened
-  //selected month August will display income data that starts with Aug
-  const filteredIncomes = selectedMonth && typeof selectedMonth === 'string'
+  const filteredIncomes = selectedMonth && typeof selectedMonth === 'string' && selectedYear
   ? incomes.filter(income => {
       const shortenedMonth = selectedMonth.substring(0, 3).toLowerCase();
-      return income.date && income.date.toLowerCase().startsWith(shortenedMonth)
+      const year = selectedYear.toString();
+      return (
+        income.date &&
+        income.date.toLowerCase().startsWith(shortenedMonth) &&
+        income.date.endsWith(year)
+      );
     })
   : incomes;
-  console.log(selectedMonth)
 
   //adds up all the income amounts
   const totalIncome = filteredIncomes.reduce((total, income) => {
@@ -43,7 +49,9 @@ function Income() {
               <IncomeForm />
             </div>
 
-            <MonthFilter onMonthSelect={setSelectedMonth} />
+            <MonthFilter 
+              onYearSelect={setSelectedYear}
+              onMonthSelect={setSelectedMonth} />
 
             <div className="w-full lg:max-w-4xl mt-6">
             {filteredIncomes.map((income) => (

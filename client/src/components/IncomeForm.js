@@ -47,12 +47,12 @@ const formHandler = async (event) => {
     }
 
     // Check if date is in the future
-    const today = new Date();
-    const inputDate = new Date(date);
-    if (inputDate > today) {
-    setErrorMsg("Date must not be in the future");
-    return;
-    }
+    // const today = new Date();
+    // const inputDate = new Date(date);
+    // if (inputDate > today) {
+    // setErrorMsg("Date must not be in the future");
+    // return;
+    // }
     
     //if no description => return no added notes
     const description = inputState.description || "No added notes."
