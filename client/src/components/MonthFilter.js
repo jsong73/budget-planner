@@ -1,6 +1,8 @@
-import React from "react";
+import React, {useState} from "react";
 
 function MonthFilter({ onMonthSelect , onYearSelect }) {
+
+  const [selectedMonthIndex, setSelectedMonthIndex] = useState(null);
 
     const months = [
         "January", 
@@ -17,17 +19,28 @@ function MonthFilter({ onMonthSelect , onYearSelect }) {
         "December"
     ];
 
-    const years = ["2023", "2024","2025","2026", "2027", "2028", "2029","2030"];
+    const years = [
+        "2023", 
+        "2024",
+        "2025",
+        "2026", 
+        "2027", 
+        "2028", 
+        "2029",
+        "2030"
+    ];
 
     function handleMonthClick(index) {
       const selectedMonth = months[index];
       onMonthSelect(selectedMonth);
+      setSelectedMonthIndex(index);
     }
 
     function handleYearChange(event){
       const selectedYear = event.target.value;
       onYearSelect(selectedYear);
     };
+
 
   return (
     <div className="flex flex-row items-center justify-center mb-6 ml-44">
@@ -45,7 +58,8 @@ function MonthFilter({ onMonthSelect , onYearSelect }) {
      {months.map((month, index) => (
         <button
           key={index}
-          className="bg-zinc-800 py-2 px-4 rounded-full mx-1 ml-2"
+          className={`bg-zinc-800 py-2 px-4 rounded-full mx-1 ml-2 
+          ${selectedMonthIndex === index ? "bg-zinc-700" : ""}`}
           onClick={() => handleMonthClick(index)}
         >
           {month}
