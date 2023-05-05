@@ -24,6 +24,7 @@ console.log(description)
             {wallet}
             <h1 className="font-bold text-xl ml-1 mr-2"> {title} </h1>
         </div>
+
         <div className="flex items-center">
             {money}
             <h1 className="text-xl ml-1 mr-2"> ${amount} </h1>
@@ -33,11 +34,17 @@ console.log(description)
             {calender} 
             <div className="ml-1 mr-2">{date}</div>
         </div>
+
+        <div className="flex items-center">
+            {detail} 
+            <div className="ml-1 ">{category} </div>
+        </div>
    
         <div className="flex items-center">
             {detail} 
             <div className="ml-1 ">{description}</div>
         </div>
+
     </div>
   </div>
 
