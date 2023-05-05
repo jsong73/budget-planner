@@ -14,6 +14,7 @@ function ExpenseForm() {
         amount: "",
         date: "",
         description: "",
+        otherCategory: "",
         userId: userId,
     });
 
@@ -36,7 +37,6 @@ const formHandler = async (event) => {
       setErrorMsg("Income source field is required");
       return;
     }
-
     if (!amount || amount <= 0) {
       setErrorMsg("Amount field is required");
       return;
@@ -53,7 +53,7 @@ const formHandler = async (event) => {
           const { data } = await addExpense({
               variables: {
               ...inputState,
-              description: description
+              description: description,
               }
           });
           console.log(data)
@@ -77,7 +77,6 @@ const formHandler = async (event) => {
   };
 
 
-
   return (
     <div className="absolute w-auto left-1/2 transform -translate-x-1/2 sm:top-60 sm:left-96 lg:left-1/4 lg:ml-12">
     <form onSubmit={formHandler}>
@@ -87,8 +86,8 @@ const formHandler = async (event) => {
             type="text"
             name="title"
             value={inputState.title}
-            placeholder="Income type"
-            className="bg-zinc-800 mb-5 rounded-xl text-center" 
+            placeholder="Expense type"
+            className="bg-zinc-800 mb-5 rounded-xl text-center w-full" 
             onChange={handleChange}
 
         />
@@ -100,7 +99,7 @@ const formHandler = async (event) => {
             name="amount"
             placeholder="Amount"
             value={inputState.amount}
-            className="bg-zinc-800 mb-5 rounded-xl text-center"
+            className="bg-zinc-800 mb-5 rounded-xl text-center w-full"
             onChange={handleChange}
         />
     </div>
@@ -110,11 +109,47 @@ const formHandler = async (event) => {
             type="date"
             name="date"
             placeholder="Enter recieved date"
-            // selected={date}
             value={inputState.date}
             className="bg-zinc-800 mb-5 rounded-xl text-center w-full "
             onChange={handleChange}
         />
+    </div>
+    
+    <div>
+        <select
+            type="category"
+            name="category"
+            placeholder="category"
+            value={inputState.category}
+            className="bg-zinc-800 mb-5 rounded-xl text-center w-full "
+            onChange={handleChange}
+        >
+            <option value="">Select a category</option>
+            <option value="house">House</option>
+            <option value="entertainment">Entertainment</option>
+            <option value="subscriptions">Subscriptions</option>
+            <option value="transportation">Transportation</option>
+            <option value="personal-care">Personal Care</option>
+            <option value="savings">Savings</option>
+            <option value="vacation">Vacation</option>
+            <option value="insurance">Insurance</option>
+            <option value="gifts">Gifts</option>
+            <option value="cellphone">Cellphone</option>
+            <option value="other" >Other</option>
+        </select>
+        {inputState.category === 'other' && (
+        <div className="bg-zinc-800 mb-5 rounded-xl text-center w-full">
+            <input
+                type="text"
+                name="otherCategory"
+                value={inputState.otherCategory}
+                onChange={handleChange}
+                placeholder="Enter other category"
+                className="bg-zinc-800 mb-5 rounded-xl text-center w-full"
+        />
+        </div>
+        )}
+
     </div>
 
     <div>
@@ -128,16 +163,15 @@ const formHandler = async (event) => {
         </textarea>
     </div>
 
-    {errorMsg && <p className="text-red-900 mb-3">{errorMsg}</p>}
-
     <button 
         type="submit" 
         onClick={formHandler}
-        className="mb-4 bg-zinc-800 rounded-xl w-full border-solid border"> Add income
+        className="mb-4 bg-zinc-800 rounded-xl w-full border-solid border"> Add Expense
     </button>
 
     </form>
 
+    {errorMsg && <p className="text-red-900 mb-3">{errorMsg}</p>}
 
     </div>
 

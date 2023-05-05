@@ -96,7 +96,7 @@ const formHandler = async (event) => {
             name="title"
             value={inputState.title}
             placeholder="Income type"
-            className="bg-zinc-800 mb-5 rounded-xl text-center" 
+            className="bg-zinc-800 mb-5 rounded-xl text-center w-full" 
             onChange={handleChange}
 
         />
@@ -108,7 +108,7 @@ const formHandler = async (event) => {
             name="amount"
             placeholder="Amount"
             value={inputState.amount}
-            className="bg-zinc-800 mb-5 rounded-xl text-center"
+            className="bg-zinc-800 mb-5 rounded-xl text-center w-full"
             onChange={handleChange}
         />
     </div>
@@ -136,7 +136,6 @@ const formHandler = async (event) => {
         </textarea>
     </div>
 
-    {errorMsg && <p className="text-red-900 mb-3">{errorMsg}</p>}
 
     <button 
         type="submit" 
@@ -146,6 +145,7 @@ const formHandler = async (event) => {
 
     </form>
 
+    {errorMsg && <p className="text-red-900 mb-3">{errorMsg}</p>}
 
     </div>
 

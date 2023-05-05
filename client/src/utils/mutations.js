@@ -39,7 +39,7 @@ export const ADD_INCOME = gql`
 `;
 
 export const ADD_EXPENSE = gql`
-    mutation addExpense($title: String!, $amount: String!, $date: String!, $category: String!, $description: String) {
+    mutation addExpense($title: String!, $amount: String!, $date: String!, $category: String!, $description: String!) {
     addExpense(title: $title, amount: $amount, date: $date, category: $category, description: $description) {
       _id
       amount

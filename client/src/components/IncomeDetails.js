@@ -3,7 +3,6 @@ import { money , calender , detail , profit } from "../utils/Icons"
 
 
 function IncomeDetails({
-
     title,
     amount,
     date, 

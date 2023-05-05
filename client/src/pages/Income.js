@@ -5,7 +5,6 @@ import { QUERY_ME } from "../utils/queries"
 import DateFilter from "../components/DateFilter";
 import { useState } from "react";
 
-
 function Income() {
 
   const [selectedMonth, setSelectedMonth] = useState(null);
@@ -70,7 +69,8 @@ function Income() {
 
             <DateFilter 
               onYearSelect={setSelectedYear}
-              onMonthSelect={setSelectedMonth} />
+              onMonthSelect={setSelectedMonth} 
+            />
 
             <div className="w-full lg:max-w-4xl mt-9">
             {filteredIncomes.map((income) => (
