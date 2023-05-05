@@ -20,7 +20,9 @@ function Income() {
   const incomes = data?.me?.incomes || [];
   // console.log(incomes)
 
-
+  const currentDate = new Date();
+  const currentMonth = currentDate.toLocaleString('default', { month: 'long' });
+  
   // filtering incomes based on selected month
   //used .substring (0,3) since my months return shortened
   const filteredIncomes = selectedMonth && typeof selectedMonth === 'string' && selectedYear
@@ -33,7 +35,11 @@ function Income() {
         income.date.endsWith(year)
       );
     })
-  : incomes;
+    // if no month is selected, show current months income
+    : incomes.filter(income => {
+      const incomeMonth = income.date.substring(0, income.date.indexOf(' '));
+      return incomeMonth === currentMonth;
+  });
 
   //adds up all the income amounts
   const totalIncome = filteredIncomes.reduce((total, income) => {
@@ -53,7 +59,7 @@ function Income() {
               onYearSelect={setSelectedYear}
               onMonthSelect={setSelectedMonth} />
 
-            <div className="w-full lg:max-w-4xl mt-6">
+            <div className="w-full lg:max-w-4xl mt-9">
             {filteredIncomes.map((income) => (
               <IncomeDetails
                   key={income._id}
