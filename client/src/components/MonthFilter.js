@@ -1,10 +1,8 @@
 import React, { useState } from "react";
 
-function MonthFilter(props) {
+function MonthFilter({ onMonthSelect }) {
 
-    const { onMonthSelect } = props;
-
-    const monthNames = [
+    const months = [
         "January", 
         "February", 
         "March",
@@ -19,23 +17,18 @@ function MonthFilter(props) {
         "December"
     ];
 
-    const [selectedMonth, setSelectedMonth] = useState(null);
-    
-    const handleMonthSelect = (month) => {
-        setSelectedMonth(month);
-        onMonthSelect(month)
+    function handleMonthClick(index) {
+      const selectedMonth = months[index];
+      onMonthSelect(selectedMonth);
     }
 
   return (
-    <div className="mb-5">
-      {monthNames.map((month) => (
-
+    <div className="flex flex-row items-center justify-center mb-6 ml-36">
+     {months.map((month, index) => (
         <button
-          key={month}
-          className={`mx-2 px-4 py-2 rounded-md ${
-            month === selectedMonth ? "bg-zinc-600" : "bg-zinc-800"
-          }`}
-          onClick={() => handleMonthSelect(month)}
+          key={index}
+          className="bg-zinc-800 py-2 px-4 rounded-full mx-1"
+          onClick={() => handleMonthClick(index)}
         >
           {month}
         </button>
