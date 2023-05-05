@@ -2,7 +2,7 @@ import IncomeForm from "../components/IncomeForm"
 import IncomeDetails from "../components/IncomeDetails"
 import { useQuery } from "@apollo/client";
 import { QUERY_ME } from "../utils/queries"
-import MonthFilter from "../components/MonthFilter";
+import DateFilter from "../components/DateFilter";
 import { useState } from "react";
 
 
@@ -20,12 +20,14 @@ function Income() {
   const incomes = data?.me?.incomes || [];
   // console.log(incomes)
 
-  const currentDate = new Date();
-  const currentMonth = currentDate.toLocaleString('default', { month: 'long' });
-  
-  // filtering incomes based on selected month
+  const today = new Date();
+  const currentMonth = today.toLocaleString('default', { month: 'long' });
+  const currentYear = today.getFullYear().toString();
+
+  // filtering incomes based on selected month and year
   //used .substring (0,3) since my months return shortened
-  const filteredIncomes = selectedMonth && typeof selectedMonth === 'string' && selectedYear
+  const filteredIncomes = selectedMonth && typeof selectedMonth === 'string' 
+  ? selectedYear
   ? incomes.filter(income => {
       const shortenedMonth = selectedMonth.substring(0, 3).toLowerCase();
       const year = selectedYear.toString();
@@ -35,15 +37,26 @@ function Income() {
         income.date.endsWith(year)
       );
     })
-    // if no month is selected, show current months income
+    //filter incomes based on current month and year if no month is selected but a year is selected
     : incomes.filter(income => {
-      const incomeMonth = income.date.substring(0, income.date.indexOf(' '));
-      return incomeMonth === currentMonth;
+      const shortenedMonth = selectedMonth.substring(0, 3).toLowerCase();
+      const year = currentYear;
+      return (
+        income.date &&
+        income.date.toLowerCase().startsWith(shortenedMonth) &&
+        income.date.endsWith(year)
+      );
+    })
+    //if no year or month selected, return current year and months incomes
+    : incomes.filter(income => {
+    const incomeMonth = income.date.substring(0, income.date.indexOf(' '));
+    const incomeYear = income.date.substring(income.date.lastIndexOf(' ') + 1);
+    return incomeMonth === currentMonth && incomeYear === currentYear;
   });
 
   //adds up all the income amounts
   const totalIncome = filteredIncomes.reduce((total, income) => {
-    return total + Number(income.amount);
+  return total + Number(income.amount);
   }, 0)
   // console.log(totalIncome)
 
@@ -55,7 +68,7 @@ function Income() {
               <IncomeForm />
             </div>
 
-            <MonthFilter 
+            <DateFilter 
               onYearSelect={setSelectedYear}
               onMonthSelect={setSelectedMonth} />
 
