@@ -48,7 +48,10 @@ function Chart() {
                         return amount;
                     })
                 ],
-                backgroundColor: "green"
+                backgroundColor: "green",
+                borderColor: "white",
+                borderWidth: 1,
+                tension: .2
             },
             { 
                 label: "Expenses",
@@ -58,14 +61,34 @@ function Chart() {
                         return amount;
                     })
                 ],
-                backgroundColor: "red"
+                backgroundColor: "red",
+                borderColor: "white",
+                borderWidth: 1,
+                tension: .2
             },
         ]
     }
 
+    const options = {
+        scales: {
+            y: {
+                ticks: {
+                    color: 'white'
+                }
+            },
+            x: {
+                ticks: {
+                    color: 'white'
+                }
+            }
+        }
+    }
   return (
-    <div>
-        <Line data= {graphData} />
+    <div className="absolute w-auto left-1/2 transform -translate-x-1/2 sm:top-60 sm:left-96 lg:left-1/4 lg:ml-80">
+        <Line 
+            className="w-full h-96"
+            data= {graphData}
+            options={options} />
     </div>
   )}
 
