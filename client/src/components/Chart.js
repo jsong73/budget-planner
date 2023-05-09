@@ -10,7 +10,7 @@ import { Chart as ChartJs ,
     Tooltip,
     Legend, 
     ArcElement } from "chart.js"
-import { Line } from "react-chartjs-2"
+import { Line , Doughnut} from "react-chartjs-2"
 
 ChartJs.register(
     CategoryScale,
@@ -34,7 +34,7 @@ function Chart() {
     const incomes = data?.me?.incomes || [];
     const expenses = data?.me?.expenses || [];
 
-    const graphData = {
+    const lineGraphData = {
         labels:  incomes.map((income) => {
             const { date } = income
             return date;
@@ -49,7 +49,7 @@ function Chart() {
                     })
                 ],
                 backgroundColor: "green",
-                borderColor: "white",
+                borderColor: "green",
                 borderWidth: 1,
                 tension: .2
             },
@@ -62,23 +62,67 @@ function Chart() {
                     })
                 ],
                 backgroundColor: "red",
-                borderColor: "white",
+                borderColor: "red",
                 borderWidth: 1,
                 tension: .2
             },
         ]
     }
 
-    const options = {
+    const lineOptions = {
         scales: {
             y: {
                 ticks: {
-                    color: 'white'
+                    color: "#EDEADE"
                 }
             },
             x: {
                 ticks: {
-                    color: 'white'
+                    color: "#EDEADE"
+                }
+            }
+        }
+    }
+
+    const circleGraphData = {
+        labels:  expenses.map((expense) => {
+            const { category } = expense
+            return category;
+        }),
+        datasets: [
+           { 
+                label: "Expenses",
+                data:[
+                    ...expenses.map((expense) => {
+                        const { amount } = expense
+                        return amount;
+                    })
+                ],
+                backgroundColor: [
+                    '#f39f3e',
+                    '#4e7be0',
+                    '#2eb96a',
+                    '#eb3b5b',
+                    '#9c589c',
+                    '#2C6454',
+                    '#E8DD68',
+                    '#005AFF',
+                    '#6B37C4',
+                    '#FC8585',
+                    '#374473'
+
+                ],
+                borderWidth: 1,
+            },
+        ]
+    }
+
+    const circleOptions = {
+        plugins: {
+            legend: {
+                position: 'bottom',
+                labels: {
+                    color: '#EDEADE'
                 }
             }
         }
@@ -86,9 +130,14 @@ function Chart() {
   return (
     <div className="absolute w-auto left-1/2 transform -translate-x-1/2 sm:top-60 sm:left-96 lg:left-1/4 lg:ml-80">
         <Line 
-            className="w-full h-96"
-            data= {graphData}
-            options={options} />
+            className="h-40"
+            data= {lineGraphData}
+            options={lineOptions} />
+
+        <Doughnut 
+            className="h-40"
+            data={circleGraphData}
+            options={circleOptions} />
     </div>
   )}
 
