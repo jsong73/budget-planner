@@ -5,6 +5,7 @@ import { QUERY_ME } from "../utils/queries"
 import DateFilter from "../components/DateFilter";
 import { useState } from "react";
 
+
 function Income() {
 
   const [selectedMonth, setSelectedMonth] = useState(null);
@@ -76,16 +77,17 @@ function Income() {
             {filteredIncomes.map((income) => (
               <IncomeDetails
                   key={income._id}
+                  id={income._id}
                   title={income.title}
                   amount={income.amount}
                   date={income.date}
                   description={income.description}
                 />
-        ))}
+              ))}
             </div>          
          
           <div className="w-full max-w-lg border-t border-gray-300 pt-4 mt-36 fixed bottom-20">
-              <h2 className="font-bold text-2xl text-center">Total income: ${totalIncome.toFixed(2)}</h2>
+              <h2 className="font-bold text-2xl text-center text-green-800">Total income: ${totalIncome.toFixed(2)}</h2>
           </div>
        
     </div>

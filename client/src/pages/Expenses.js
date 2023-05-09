@@ -12,8 +12,12 @@ function Expenses() {
 
   const {loading, data}= useQuery(QUERY_ME);
 
+  if (loading) {
+    return <div> loading... </div>;
+  }
+
   const expenses = data?.me?.expenses || [];
-  console.log(expenses)
+  // console.log(expenses)
 
   const today = new Date();
   const currentMonth = today.toLocaleString('default', { month: 'long' });
@@ -54,7 +58,6 @@ function Expenses() {
   return total + Number(income.amount);
   }, 0)
 
-
   return (
     <div className="flex flex-col items-center justify-center mt-12">
         <h1 className="font-bold text-3xl mb-12">Expenses</h1>
@@ -77,14 +80,13 @@ function Expenses() {
                   amount={expense.amount}
                   date={expense.date}
                   category={expense.category}
-                  otherCategory={expense.otherCategory}
                   description={expense.description}
                 />
         ))}
             </div>       
 
     <div className="w-full max-w-lg border-t border-gray-300 pt-4 mt-36 fixed bottom-20">
-        <h2 className="font-bold text-2xl text-center">Total income: ${totalIncome.toFixed(2)}</h2>
+        <h2 className="font-bold text-2xl text-center text-red-900">Total Expenses: -${totalIncome.toFixed(2)}</h2>
     </div>
 
 </div>

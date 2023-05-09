@@ -50,3 +50,29 @@ export const ADD_EXPENSE = gql`
     }
   }
   `;
+
+  export const REMOVE_INCOME = gql`
+    mutation removeIncome($incomeId: ID!) {
+    removeIncome(incomeId: $incomeId) {
+      _id
+      amount
+      date
+      description
+      title
+    }
+  }
+  `;
+  
+  export const REMOVE_EXPENSE = gql`
+    mutation removeExpense($expenseId: ID!) {
+    removeExpense(expenseId: $expenseId) {
+        _id
+        amount
+        category
+        date
+        description
+        title
+    }
+  }
+  `;
+  

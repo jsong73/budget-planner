@@ -1,11 +1,14 @@
 import React from "react";
 import { money , calender , detail , profit } from "../utils/Icons"
-
+import { REMOVE_INCOME } from "../utils/mutations";
+import { QUERY_ME } from "../utils/queries";
+import { useMutation } from "@apollo/client";
 
 function IncomeDetails({
     title,
     amount,
     date, 
+    id,
     description
 }) {
 // console.log(title)
@@ -13,6 +16,32 @@ function IncomeDetails({
 // console.log(id)
 // console.log(date)
 // console.log(description)
+
+const [ removeIncome ] = useMutation(REMOVE_INCOME, {
+  update(cache, {data: {removeIncome}}) {
+    try{
+      cache.readQuery({
+        query: QUERY_ME,
+        data: {me: removeIncome },
+      });
+    } catch (error) {
+      console.log(error)
+    }
+  },
+});
+
+
+const removeIncomeHandler = async ( incomeId ) => {
+  try{
+    const { data } = await removeIncome({
+      variables: { incomeId },
+    });
+    console.log(data)
+    window.location.reload();
+  } catch (error) {
+    console.log(error)
+  }
+}
 
   return (
 
@@ -27,7 +56,7 @@ function IncomeDetails({
 
       <div className="flex items-center">
         {money}
-        <h1 className="text-xl ml-1 mr-2"> ${amount} </h1>
+        <div className="text-xl ml-1 mr-2"> ${amount} </div>
       </div>
 
 
@@ -41,6 +70,8 @@ function IncomeDetails({
       {detail} 
         <div className="ml-1 ">{description}</div>
     </div>
+
+    <button onClick={() => removeIncomeHandler(id)}> X </button>
 
     </div>
   </div>

@@ -6,6 +6,7 @@ import {useMutation} from "@apollo/client"
 const userId = Auth.getProfile()?.data?._id;
 
 function ExpenseForm() {
+
     const [errorMsg, setErrorMsg] = useState("");
     const [ addExpense ] = useMutation(ADD_EXPENSE)
 
@@ -25,8 +26,8 @@ function ExpenseForm() {
             ...prevState,
             [name]: value,
         }
-      });
-    };
+    });
+};
 
 const formHandler = async (event) => {
     event.preventDefault();
@@ -137,14 +138,14 @@ const formHandler = async (event) => {
             <option value="cellphone">Cellphone</option>
             <option value="other" >Other</option>
         </select>
-        {inputState.category === 'other' && (
+        {inputState.category === "other" && (
         <div className="bg-zinc-800 mb-5 rounded-xl text-center w-full">
             <input
-                type="text"
+                type="otherCategory"
                 name="otherCategory"
                 value={inputState.otherCategory}
                 onChange={handleChange}
-                placeholder="Enter other category"
+                placeholder="Enter category"
                 className="bg-zinc-800 mb-5 rounded-xl text-center w-full"
         />
         </div>

@@ -6,15 +6,13 @@ function ExpenseDetails({
     amount, 
     date, 
     category,
-    otherCategory,
     description,
 }) {
-console.log(title)
-console.log(amount)
-console.log(date)
-console.log(category)
-console.log(otherCategory)
-console.log(description)
+// console.log(title)
+// console.log(amount)
+// console.log(date)
+// console.log(category)
+// console.log(description)
 
   return (
     <div className="flex w-full h-32 ml-80 sm:right-60">
@@ -27,7 +25,7 @@ console.log(description)
 
         <div className="flex items-center">
             {money}
-            <h1 className="text-xl ml-1 mr-2"> ${amount} </h1>
+            <div className="text-xl ml-1 mr-2"> ${amount} </div>
         </div>
 
         <div className="flex items-center">
@@ -37,7 +35,7 @@ console.log(description)
 
         <div className="flex items-center">
             {detail} 
-            <div className="ml-1 ">{category} </div>
+            <div className="ml-1 mr-2">{category} </div>
         </div>
    
         <div className="flex items-center">
