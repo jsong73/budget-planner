@@ -9,7 +9,7 @@ import { BiMessageDetail } from "react-icons/bi";
 import { TbPigMoney } from "react-icons/tb";
 import { HiOutlineWallet } from "react-icons/hi2"
 import { TiDelete } from "react-icons/ti"
-
+import { RiErrorWarningLine } from "react-icons/ri"
 
 //nav icons
 export const home = <RxDashboard /> ;
@@ -23,6 +23,7 @@ export const logoutIcon = <MdLogout />;
 export const money = <RiMoneyDollarCircleLine />;
 export const calender = <MdOutlineDateRange />;
 export const detail = <BiMessageDetail />;
-export const profit = <TbPigMoney />
-export const wallet = <HiOutlineWallet />
-export const deleteBtn = <TiDelete />
+export const profit = <TbPigMoney />;
+export const wallet = <HiOutlineWallet />;
+export const deleteBtn = <TiDelete />;
+export const warning = <RiErrorWarningLine />;

@@ -74,7 +74,7 @@ const removeExpenseHandler = async ( expenseId ) => {
 
         
     <button 
-      className="flex ml-auto"
+      className="flex ml-auto text-2xl"
       onClick={() => removeExpenseHandler(id)}> 
       {deleteBtn}
     </button>

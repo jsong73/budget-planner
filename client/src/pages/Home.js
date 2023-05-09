@@ -10,8 +10,12 @@ function Home() {
         </div>
 
         <Chart isLoggedInUser = {Auth.loggedIn() === true}/>
-{/* 
-        <h1 className=""> Total Income To Date </h1> */}
+
+        <div className="flex justify-center items-center">
+            <h1> Total Income to Date </h1>
+            <div className="border-b-2 border-gray-300 "></div>
+        </div>
+
     </div>
   )}
 

@@ -27,8 +27,14 @@ function IncomeForm() {
       });
     };
 
+
 const formHandler = async (event) => {
     event.preventDefault();
+
+    if (!Auth.loggedIn()) {
+        setErrorMsg("Please login to submit income");
+        return;
+    }
 
     const { title, amount, date } = inputState;
     //input field validations

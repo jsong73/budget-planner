@@ -32,10 +32,14 @@ function ExpenseForm() {
 const formHandler = async (event) => {
     event.preventDefault();
 
+    if (!Auth.loggedIn()) {
+        setErrorMsg("Please login to submit income");
+        return;
+    }
     const { title, amount, date } = inputState;
     //input field validations
     if (!title) {
-      setErrorMsg("Income source field is required");
+      setErrorMsg("Expense type field is required");
       return;
     }
     if (!amount || amount <= 0) {

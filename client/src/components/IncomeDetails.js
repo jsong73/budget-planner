@@ -74,7 +74,7 @@ const removeIncomeHandler = async ( incomeId ) => {
     
 
     <button 
-      className="flex ml-auto"
+      className="flex ml-auto text-2xl"
       onClick={() => removeIncomeHandler(id)}> 
       {deleteBtn}
     </button>

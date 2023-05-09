@@ -1,6 +1,7 @@
 import React from "react";
 import { QUERY_ME } from "../utils/queries"
 import { useQuery } from "@apollo/client";
+import {warning} from "../utils/Icons"
 import { Chart as ChartJs , 
     CategoryScale,
     LinearScale,
@@ -82,7 +83,7 @@ function Chart({isLoggedInUser= false}) {
                 }
             }
         }
-    }
+    };
 
     const circleGraphData = {
         labels:  expenses.map((expense) => {
@@ -128,24 +129,32 @@ function Chart({isLoggedInUser= false}) {
         }
     }
   return (
-    <div className="absolute w-auto left-1/2 transform -translate-x-1/2 sm:top-60 sm:left-96 lg:left-1/4 lg:ml-80">
+    <div className={`chart-container ${isLoggedInUser ? '' : 'text-center'}`}>
         
     {isLoggedInUser ? (
         <>
-        <Line 
-            className="h-40"
-            data= {lineGraphData}
-            options={lineOptions} 
-        />
+        <div className="line-graph">
+            <Line 
+                className=""
+                data= {lineGraphData}
+                options={lineOptions} 
+            />
+        </div>
 
-        <Doughnut 
-            className="h-40"
-            data={circleGraphData}
-            options={circleOptions} 
-        />
+         <div className="circle-graph">
+            <Doughnut 
+                className=""
+                data={circleGraphData}
+                options={circleOptions} 
+            />
+        </div>
         </>
     ):(
-        <p className="flex justify-center items-center "> Please login to view your dashboard. </p>
+        <div className="ml-62 text-center mt-32 h-1/2 flex"> 
+            <p className="mr-3"> Please login to view your dashboard
+             </p> 
+             <div className="text-3xl">  {warning} </div>
+        </div>
     )}
     </div>
         

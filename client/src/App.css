@@ -18,3 +18,22 @@ body {
 .modal-overlay {
     background-color: rgba(0, 0, 0, 0.5);
 }
+
+.chart-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 500px;
+  padding: 20px;
+  box-sizing: border-box;
+}
+
+.line-graph{
+    width:500px;
+}
+.circle-graph{
+    width:400px;
+    margin-left: 80px;
+}
