@@ -23,7 +23,7 @@ ChartJs.register(
     ArcElement
 );
 
-function Chart() {
+function Chart({isLoggedInUser= false}) {
 
     const {loading, data } = useQuery(QUERY_ME)
 
@@ -48,8 +48,8 @@ function Chart() {
                         return amount;
                     })
                 ],
-                backgroundColor: "green",
-                borderColor: "green",
+                backgroundColor: "#2eb96a",
+                borderColor: "#2eb96a",
                 borderWidth: 1,
                 tension: .2
             },
@@ -61,8 +61,8 @@ function Chart() {
                         return amount;
                     })
                 ],
-                backgroundColor: "red",
-                borderColor: "red",
+                backgroundColor: "#eb3b5b",
+                borderColor: "#eb3b5b",
                 borderWidth: 1,
                 tension: .2
             },
@@ -129,17 +129,28 @@ function Chart() {
     }
   return (
     <div className="absolute w-auto left-1/2 transform -translate-x-1/2 sm:top-60 sm:left-96 lg:left-1/4 lg:ml-80">
+        
+    {isLoggedInUser ? (
+        <>
         <Line 
             className="h-40"
             data= {lineGraphData}
-            options={lineOptions} />
+            options={lineOptions} 
+        />
 
         <Doughnut 
             className="h-40"
             data={circleGraphData}
-            options={circleOptions} />
+            options={circleOptions} 
+        />
+        </>
+    ):(
+        <p className="flex justify-center items-center "> Please login to view your dashboard. </p>
+    )}
     </div>
-  )}
+        
+        )}
+        
 
 
 export default Chart;
