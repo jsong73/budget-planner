@@ -1,10 +1,14 @@
 import React from "react";
-import { money , calender , detail , wallet } from "../utils/Icons"
+import { money , calender , detail , wallet , deleteBtn} from "../utils/Icons"
+import { useMutation } from "@apollo/client";
+import { REMOVE_EXPENSE } from "../utils/mutations";
+import { QUERY_ME } from "../utils/queries";
 
 function ExpenseDetails({ 
     title,
     amount, 
     date, 
+    id,
     category,
     description,
 }) {
@@ -13,6 +17,31 @@ function ExpenseDetails({
 // console.log(date)
 // console.log(category)
 // console.log(description)
+
+const [ removeExpense ] = useMutation(REMOVE_EXPENSE, {
+    update(cache, {data: {removeExpense}}) {
+        try{
+            cache.readQuery({
+                query: QUERY_ME,
+                data: {me: removeExpense },
+            });
+        } catch (error) {
+            console.log(error)
+        }
+    },
+});
+
+const removeExpenseHandler = async ( expenseId ) => {
+    try{
+        const { data } = await removeExpense({
+            variables: { expenseId },
+        });
+        console.log(data)
+        window.location.reload();
+    } catch (error) {
+        console.log(error)
+    }
+};
 
   return (
     <div className="flex w-full h-32 ml-80 sm:right-60">
@@ -42,6 +71,13 @@ function ExpenseDetails({
             {detail} 
             <div className="ml-1 ">{description}</div>
         </div>
+
+        
+    <button 
+      className="flex ml-auto"
+      onClick={() => removeExpenseHandler(id)}> 
+      {deleteBtn}
+    </button>
 
     </div>
   </div>

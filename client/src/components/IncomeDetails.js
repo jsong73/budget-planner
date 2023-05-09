@@ -42,7 +42,7 @@ const removeIncomeHandler = async ( incomeId ) => {
   } catch (error) {
     console.log(error)
   }
-}
+};
 
   return (
 

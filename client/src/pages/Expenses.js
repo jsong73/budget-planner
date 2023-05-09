@@ -76,6 +76,7 @@ function Expenses() {
             {filteredExpenses.map((expense) => (
               <ExpenseDetails
                   key={expense._id}
+                  id={expense._id}
                   title={expense.title}
                   amount={expense.amount}
                   date={expense.date}
