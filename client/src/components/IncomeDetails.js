@@ -1,8 +1,9 @@
 import React from "react";
-import { money , calender , detail , profit } from "../utils/Icons"
+import { money , calender , detail , profit, deleteBtn } from "../utils/Icons"
 import { REMOVE_INCOME } from "../utils/mutations";
 import { QUERY_ME } from "../utils/queries";
 import { useMutation } from "@apollo/client";
+
 
 function IncomeDetails({
     title,
@@ -70,12 +71,19 @@ const removeIncomeHandler = async ( incomeId ) => {
       {detail} 
         <div className="ml-1 ">{description}</div>
     </div>
+    
 
-    <button onClick={() => removeIncomeHandler(id)}> X </button>
+    <button 
+      className="flex ml-auto"
+      onClick={() => removeIncomeHandler(id)}> 
+      {deleteBtn}
+    </button>
 
     </div>
   </div>
-  )}
+
+
+)}
 
 
 export default IncomeDetails;

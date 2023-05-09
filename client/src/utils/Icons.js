@@ -8,6 +8,7 @@ import { MdOutlineDateRange } from "react-icons/md";
 import { BiMessageDetail } from "react-icons/bi";
 import { TbPigMoney } from "react-icons/tb";
 import { HiOutlineWallet } from "react-icons/hi2"
+import { TiDelete } from "react-icons/ti"
 
 
 //nav icons
@@ -24,3 +25,4 @@ export const calender = <MdOutlineDateRange />;
 export const detail = <BiMessageDetail />;
 export const profit = <TbPigMoney />
 export const wallet = <HiOutlineWallet />
+export const deleteBtn = <TiDelete />
