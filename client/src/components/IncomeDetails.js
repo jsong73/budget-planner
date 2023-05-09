@@ -1,9 +1,8 @@
-import React from "react";
+import React, {useState}from "react";
 import { money , calender , detail , profit, deleteBtn } from "../utils/Icons"
 import { REMOVE_INCOME } from "../utils/mutations";
 import { QUERY_ME } from "../utils/queries";
 import { useMutation } from "@apollo/client";
-
 
 function IncomeDetails({
     title,
@@ -17,6 +16,7 @@ function IncomeDetails({
 // console.log(id)
 // console.log(date)
 // console.log(description)
+
 
 const [ removeIncome ] = useMutation(REMOVE_INCOME, {
   update(cache, {data: {removeIncome}}) {
