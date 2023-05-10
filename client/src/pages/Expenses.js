@@ -54,8 +54,8 @@ function Expenses() {
   });
 
   //adds up all the income amounts
-  const totalIncome = filteredExpenses.reduce((total, income) => {
-  return total + Number(income.amount);
+  const totalExpense = filteredExpenses.reduce((total, expense) => {
+  return total + Number(expense.amount);
   }, 0)
 
   return (
@@ -87,7 +87,7 @@ function Expenses() {
             </div>       
 
     <div className="w-full max-w-lg border-t border-gray-300 pt-4 mt-36 fixed bottom-20">
-        <h2 className="font-bold text-2xl text-center text-red-900">Total Expenses: -${totalIncome.toFixed(2)}</h2>
+        <h2 className="font-bold text-2xl text-center text-red-900">Total Expenses: -${totalExpense.toFixed(2)}</h2>
     </div>
 
 </div>

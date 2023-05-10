@@ -135,7 +135,6 @@ function Chart({isLoggedInUser= false}) {
         <>
         <div className="line-graph">
             <Line 
-                className=""
                 data= {lineGraphData}
                 options={lineOptions} 
             />
@@ -143,7 +142,6 @@ function Chart({isLoggedInUser= false}) {
 
          <div className="circle-graph">
             <Doughnut 
-                className=""
                 data={circleGraphData}
                 options={circleOptions} 
             />
@@ -157,8 +155,7 @@ function Chart({isLoggedInUser= false}) {
         </div>
     )}
     </div>
-        
-        )}
+)}
         
 
 

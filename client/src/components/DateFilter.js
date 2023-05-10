@@ -59,7 +59,7 @@ function MonthFilter({ onMonthSelect , onYearSelect }) {
         <button
           key={index}
           className={`bg-zinc-800 py-2 px-4 rounded-full mx-1 ml-2 
-          ${selectedMonthIndex === index ? "bg-zinc-700" : ""}`}
+          ${selectedMonthIndex === index ? "bg-zinc-600" : ""}`}
           onClick={() => handleMonthClick(index)}
         >
           {month}
