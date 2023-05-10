@@ -32,8 +32,10 @@ body {
 
 .line-graph{
     width:600px;
+    margin-left: 100px;
 }
 .circle-graph{
     width:400px;
-    margin-left: 100px;
+    margin-left: 200px;
 }
+

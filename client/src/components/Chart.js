@@ -24,7 +24,7 @@ ChartJs.register(
     ArcElement
 );
 
-function Chart({isLoggedInUser= false, filteredIncomes, filteredExpenses, view}) {
+function Chart({isLoggedInUser= false, filteredIncomes, filteredExpenses}) {
 
     const {loading, data } = useQuery(QUERY_ME)
 
@@ -32,8 +32,8 @@ function Chart({isLoggedInUser= false, filteredIncomes, filteredExpenses, view})
       return <div> loading... </div>;
     }
 
-    const incomes = data?.me?.incomes || [];
-    const expenses = data?.me?.expenses || [];
+    // const incomes = data?.me?.incomes || [];
+    // const expenses = data?.me?.expenses || [];
 
     const lineGraphData = {
         labels:  filteredIncomes.map((income) => {
@@ -148,7 +148,7 @@ function Chart({isLoggedInUser= false, filteredIncomes, filteredExpenses, view})
         </div>
         </>
     ):(
-        <div className="ml-62 text-center mt-32 h-1/2 flex"> 
+        <div className="mx-auto text-center mt-10"> 
             <p className="mr-3"> Please login to view your dashboard
              </p> 
              <div className="text-3xl">  {warning} </div>

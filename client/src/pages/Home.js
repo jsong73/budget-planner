@@ -92,7 +92,6 @@ function Home() {
           isLoggedInUser = {Auth.loggedIn() === true}
           filteredIncomes={filteredIncomes}
           filteredExpenses={filteredExpenses}
-          view={view}
         />
  
             <div className="flex justify-center items-center text-center mt-12">

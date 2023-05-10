@@ -35,9 +35,11 @@ function Signup() {
 const isLoggedIn = Auth.loggedIn();
 
   return (
-    <div className="absolute top-5 right-3 mr-35">
+    <div className="fixed top-5 right-6">
         {isLoggedIn ? null :
-            <button onClick={openModal}> Signup
+            <button 
+            className="px-2 py-2"
+            onClick={openModal}> Signup
             </button>
         }
 
@@ -48,7 +50,7 @@ const isLoggedIn = Auth.loggedIn();
                 onRequestClose={closeModal}>
                      
                      <button 
-                     className="float-right"
+                     className="float-right "
                      onClick={closeModal}> {close} </button>
                     
                     <SignupModal onClose={closeModal} />

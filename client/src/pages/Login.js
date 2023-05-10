@@ -42,16 +42,18 @@ function Login() {
     }
 
   return (
-    <div className="absolute top-5 right-4 md:right-20 md:top-5 mr-2">
+    <div className="fixed top-5 right-24">
       {isLoggedIn ? (
         <div className="flex items-center">
             <button 
-                className="mr-2"
+                className="mr-2 "
                 onClick={logout}>Logout</button> 
                 {logoutIcon}
         </div>
       ) : (
-        <button onClick={openModal}>Login</button>
+        <button 
+        className="px-12 py-2"
+        onClick={openModal}>Login</button>
       )}
 
             <Modal 
