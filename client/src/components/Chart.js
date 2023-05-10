@@ -24,7 +24,7 @@ ChartJs.register(
     ArcElement
 );
 
-function Chart({isLoggedInUser= false}) {
+function Chart({isLoggedInUser= false, filteredIncomes, filteredExpenses, view}) {
 
     const {loading, data } = useQuery(QUERY_ME)
 
@@ -36,7 +36,7 @@ function Chart({isLoggedInUser= false}) {
     const expenses = data?.me?.expenses || [];
 
     const lineGraphData = {
-        labels:  incomes.map((income) => {
+        labels:  filteredIncomes.map((income) => {
             const { date } = income
             return date;
         }),
@@ -44,7 +44,7 @@ function Chart({isLoggedInUser= false}) {
            { 
                 label: "Income",
                 data:[
-                    ...incomes.map((income) => {
+                    ...filteredIncomes.map((income) => {
                         const { amount } = income
                         return amount;
                     })
@@ -57,7 +57,7 @@ function Chart({isLoggedInUser= false}) {
             { 
                 label: "Expenses",
                 data:[
-                    ...expenses.map((expense) => {
+                    ...filteredExpenses.map((expense) => {
                         const { amount } = expense
                         return amount;
                     })
@@ -86,7 +86,7 @@ function Chart({isLoggedInUser= false}) {
     };
 
     const circleGraphData = {
-        labels:  expenses.map((expense) => {
+        labels:  filteredExpenses.map((expense) => {
             const { category } = expense
             return category;
         }),
@@ -94,7 +94,7 @@ function Chart({isLoggedInUser= false}) {
            { 
                 label: "Expenses",
                 data:[
-                    ...expenses.map((expense) => {
+                    ...filteredExpenses.map((expense) => {
                         const { amount } = expense
                         return amount;
                     })

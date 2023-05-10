@@ -88,8 +88,12 @@ function Home() {
             <h1 className="font-bold text-3xl">Home</h1>
         </div>
 
-        <Chart isLoggedInUser = {Auth.loggedIn() === true}/>
-
+        <Chart 
+          isLoggedInUser = {Auth.loggedIn() === true}
+          filteredIncomes={filteredIncomes}
+          filteredExpenses={filteredExpenses}
+          view={view}
+        />
  
             <div className="flex justify-center items-center text-center mt-12">
               
