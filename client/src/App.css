@@ -36,6 +36,48 @@ body {
 }
 .circle-graph{
     width:400px;
-    margin-left: 200px;
+    margin-left: 150px;
 }
 
+
+/* Media queries for CHARTS */
+@media only screen and (max-width: 480px) {
+    /* Styles for small phone sizes */
+    .line-graph,
+    .circle-graph{
+      width: 85%;
+      margin-right:150px;
+      margin-bottom: 30px;
+    }
+  }
+  
+  @media only screen and (min-width: 481px) and (max-width: 768px) {
+    /* Styles for medium phone sizes */
+    .line-graph,
+    .circle-graph {
+      width: 65%;
+      margin-right: 150px;
+      margin-bottom: 10px;
+    }
+  }
+  
+  @media only screen and (min-width: 769px) and (max-width: 1024px) {
+    /* Styles for large phone sizes */
+    .line-graph,
+    .circle-graph{
+      width: 45%;
+      margin-bottom: 30px;
+    }
+  }
+  
+  /* Additional styles for iPhone SE */
+  @media only screen and (max-width: 320px) {
+    .chart-container {
+      margin-right: 100px;
+    }
+    .chart-line,
+    .chart-doughnut {
+      width: 100%;
+      margin-right: 100px;
+    }
+  }
