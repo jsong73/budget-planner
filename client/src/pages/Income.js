@@ -1,7 +1,7 @@
 import IncomeForm from "../components/IncomeForm"
 import IncomeDetails from "../components/IncomeDetails"
 import { useQuery } from "@apollo/client";
-import { QUERY_ME } from "../utils/queries"
+import { QUERY_ME } from "../utils/queries";
 import DateFilter from "../components/DateFilter";
 import { useState } from "react";
 
@@ -10,7 +10,7 @@ function Income() {
   const [selectedMonth, setSelectedMonth] = useState(null);
   const [selectedYear, setSelectedYear] = useState(null);
 
-  const {loading, data } = useQuery(QUERY_ME)
+  const {loading, data } = useQuery(QUERY_ME);
 
 
   if (loading) {
