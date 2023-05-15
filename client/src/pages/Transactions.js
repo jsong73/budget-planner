@@ -39,6 +39,7 @@ const recentTransactions = allTransactions.sort((a, b) => {
   const topFiveTransactions = recentTransactions.slice(0,7);
   // console.log(topFiveTransactions)
   
+  //file save as CSV
   const downloadCSV = () => {
     const csvData = [
       ["Title", "Type", "Amount", "Date", "Year"],
@@ -50,7 +51,7 @@ const recentTransactions = allTransactions.sort((a, b) => {
       ]),
       ['', "Total Income:", calculateTotalIncome()],
       ['', "Total Expenses:", calculateTotalExpenses()],
-      ['', "Net Income:", calculateNetIncome()],
+      ['', "Remaining Balance:", calculateRemainingBalance()],
     ];
 
     const csvContent = csvData.map(row => row.join(',')).join('\n');
@@ -59,21 +60,22 @@ const recentTransactions = allTransactions.sort((a, b) => {
     saveAs(blob, 'transaction_report.csv');
   };
 
+  //income total calculations
   const calculateTotalIncome = () => {
     const totalIncome = incomes.reduce((sum, income) => sum + parseFloat(income.amount), 0);
     return totalIncome.toFixed(2);
   };
-
+// expense total calculations
   const calculateTotalExpenses = () => {
     const totalExpenses = expenses.reduce((sum, expense) => sum + parseFloat(expense.amount), 0);
     return totalExpenses.toFixed(2);
   };
-
-  const calculateNetIncome = () => {
+//calculation for remaining balance
+  const calculateRemainingBalance = () => {
     const totalIncome = calculateTotalIncome();
     const totalExpenses = calculateTotalExpenses();
-    const netIncome = totalIncome - totalExpenses;
-    return netIncome.toFixed(2);
+    const remainingBalance = totalIncome - totalExpenses;
+    return remainingBalance.toFixed(2);
   };
 
   return (
