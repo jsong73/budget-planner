@@ -37,7 +37,7 @@ const recentTransactions = allTransactions.sort((a, b) => {
 });
 
   const topFiveTransactions = recentTransactions.slice(0,7);
-  // console.log(topFiveTransactions)
+  console.log(topFiveTransactions)
   
   //file save as CSV
   const downloadCSV = () => {
@@ -84,7 +84,7 @@ const recentTransactions = allTransactions.sort((a, b) => {
           <h1 className="font-bold text-3xl">Transactions</h1>
       </div>
 
-    <div className="mt-12 justify-center items-center text-center"> Recent Transaction History
+    <div className="flex flex-col mt-12 justify-center items-center text-center"> Recent Transaction History
     <ul className="mt-4">
           {topFiveTransactions.map((transaction, index) => (
             <li 
@@ -103,7 +103,9 @@ const recentTransactions = allTransactions.sort((a, b) => {
           ))}
         </ul>
 
-        <button onClick={downloadCSV}> Download Report </button>
+        <button 
+          className="mt-8 bg-zinc-800 rounded-xl flex px-10 py-1 border-solid border focus:bg-zinc-600"
+          onClick={downloadCSV}> Download Transaction Report </button>
         </div>
         
     </div>

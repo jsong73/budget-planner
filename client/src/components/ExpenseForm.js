@@ -171,7 +171,7 @@ const formHandler = async (event) => {
     <button 
         type="submit" 
         onClick={formHandler}
-        className="mb-4 bg-zinc-800 rounded-xl w-full border-solid border"> Add Expense
+        className="mb-4 bg-zinc-800 rounded-xl w-full border-solid border focus:bg-zinc-600"> Add Expense
     </button>
 
     </form>
