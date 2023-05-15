@@ -36,7 +36,7 @@ const recentTransactions = allTransactions.sort((a, b) => {
 });
 
   const topFiveTransactions = recentTransactions.slice(0,5);
-  console.log(topFiveTransactions)
+  // console.log(topFiveTransactions)
 
   return (
     <div>
@@ -44,24 +44,22 @@ const recentTransactions = allTransactions.sort((a, b) => {
           <h1 className="font-bold text-3xl">Transactions</h1>
       </div>
 
-    <div className="mt-20 justify-center items-center text-center"> Recent Transaction History
+    <div className="mt-12 justify-center items-center text-center"> Recent Transaction History
     <ul className="mt-4">
           {topFiveTransactions.map((transaction, index) => (
             <li 
-              className=""
+              className="border border-white rounded-lg p-4 mb-4 flex w-4/5 float-right mr-12"
               key={index}>
-                <p>{transaction.title}</p>
-                <p>
-                  {transaction.__typename === "Income" && <span style={{ color: "green" }}>+</span>}
-                  {transaction.__typename === "Expense" && <span style={{ color: "red" }}>-</span>}
+                <p className="flex-grow text-left">{transaction.title}</p>
+                <p className="flex-shrink-0 text-right"> 
+                  {transaction.__typename === "Income" && <span style={{ color: "green" }}> + </span>}
+                  {transaction.__typename === "Expense" && <span style={{ color: "red" }}> - </span>}
                   {transaction.amount}
                 </p>  
             </li>
           ))}
         </ul>
-   
         </div>
-    
     </div>
 )}
 
