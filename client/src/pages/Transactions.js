@@ -1,6 +1,7 @@
 import React from "react";
 import { useQuery } from "@apollo/client";
 import { QUERY_ME } from "../utils/queries";
+import { saveAs } from 'file-saver';
 
 function Transactions() {
 
@@ -35,8 +36,45 @@ const recentTransactions = allTransactions.sort((a, b) => {
   return dateB.getTime() - dateA.getTime();
 });
 
-  const topFiveTransactions = recentTransactions.slice(0,5);
+  const topFiveTransactions = recentTransactions.slice(0,7);
   // console.log(topFiveTransactions)
+  
+  const downloadCSV = () => {
+    const csvData = [
+      ["Title", "Type", "Amount", "Date", "Year"],
+      ...recentTransactions.map((transaction) => [
+        transaction.title,
+        transaction.__typename === 'Income' ? 'Income' : 'Expense',
+        transaction.amount,
+        transaction.date,
+      ]),
+      ['', "Total Income:", calculateTotalIncome()],
+      ['', "Total Expenses:", calculateTotalExpenses()],
+      ['', "Net Income:", calculateNetIncome()],
+    ];
+
+    const csvContent = csvData.map(row => row.join(',')).join('\n');
+
+    const blob = new Blob([csvContent], { type: 'text/csv;charset=utf-8' });
+    saveAs(blob, 'transaction_report.csv');
+  };
+
+  const calculateTotalIncome = () => {
+    const totalIncome = incomes.reduce((sum, income) => sum + parseFloat(income.amount), 0);
+    return totalIncome.toFixed(2);
+  };
+
+  const calculateTotalExpenses = () => {
+    const totalExpenses = expenses.reduce((sum, expense) => sum + parseFloat(expense.amount), 0);
+    return totalExpenses.toFixed(2);
+  };
+
+  const calculateNetIncome = () => {
+    const totalIncome = calculateTotalIncome();
+    const totalExpenses = calculateTotalExpenses();
+    const netIncome = totalIncome - totalExpenses;
+    return netIncome.toFixed(2);
+  };
 
   return (
     <div>
@@ -50,16 +88,22 @@ const recentTransactions = allTransactions.sort((a, b) => {
             <li 
               className="border border-white rounded-lg p-4 mb-4 flex w-4/5 float-right mr-12"
               key={index}>
-                <p className="flex-grow text-left">{transaction.title}</p>
+                <p className="flex-grow text-left">
+                  {transaction.__typename === "Income" && <span style={{ color: "#2eb96a" }}>{transaction.title} </span>}
+                  {transaction.__typename === "Expense" && <span style={{ color: "#eb3b5b" }}>{transaction.title} </span>}
+                </p>
                 <p className="flex-shrink-0 text-right"> 
-                  {transaction.__typename === "Income" && <span style={{ color: "green" }}> + </span>}
-                  {transaction.__typename === "Expense" && <span style={{ color: "red" }}> - </span>}
+                  {transaction.__typename === "Income" && <span style={{ color: "#2eb96a" }}> + </span>}
+                  {transaction.__typename === "Expense" && <span style={{ color: "#eb3b5b" }}> - </span>}
                   {transaction.amount}
                 </p>  
             </li>
           ))}
         </ul>
+
+        <button onClick={downloadCSV}> Download Report </button>
         </div>
+        
     </div>
 )}
 
