@@ -20,10 +20,10 @@ function Home() {
   if (!isLoggedIn) {
     return (
       <div>
-        <div className="flex justify-center items-center mt-12">
+        <div className="flex justify-center items-center text-center mt-12">
           <h1 className="font-bold text-3xl">Home</h1>
         </div>
-        <div className="flex justify-center items-center mt-52">
+        <div className="flex justify-center items-center text-center mt-52">
           <p className="mr-3">Please log in to view your dashboard</p>
           <div className="text-3xl">  {warning} </div>
         </div>

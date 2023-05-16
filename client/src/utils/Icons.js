@@ -10,6 +10,7 @@ import { TbPigMoney } from "react-icons/tb";
 import { HiOutlineWallet } from "react-icons/hi2"
 import { TiDelete } from "react-icons/ti"
 import { RiErrorWarningLine } from "react-icons/ri"
+import { BiErrorAlt } from "react-icons/bi"
 
 //nav icons
 export const home = <RxDashboard /> ;
@@ -27,3 +28,4 @@ export const profit = <TbPigMoney />;
 export const wallet = <HiOutlineWallet />;
 export const deleteBtn = <TiDelete />;
 export const warning = <RiErrorWarningLine />;
+export const error = <BiErrorAlt />;

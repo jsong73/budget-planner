@@ -33,7 +33,7 @@ function Signup() {
     }
 
 const isLoggedIn = Auth.loggedIn();
-// flex justify-end
+
   return (
     <div className="absolute top-5 right-0">
         {isLoggedIn ? null :

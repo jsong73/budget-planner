@@ -3,7 +3,8 @@ import { useQuery } from "@apollo/client";
 import { QUERY_ME } from "../utils/queries";
 import { saveAs } from 'file-saver';
 import * as XLSX from "xlsx";
-
+import Auth from "../utils/auth"
+import {error} from "../utils/Icons"
 
 function Transactions() {
 
@@ -11,6 +12,23 @@ function Transactions() {
 
   if (loading) {
     return <div> loading... </div>;
+  }
+
+  //making sure please login msg is displayed when user is not logged in
+  const isLoggedIn = Auth.loggedIn();
+  
+  if (!isLoggedIn) {
+    return (
+      <div>
+        <div className="flex justify-center items-center text-center mt-12">
+          <h1 className="font-bold text-3xl">Transactions</h1>
+        </div>
+        <div className="flex justify-center items-center text-center mt-52">
+          <p className="mr-3">Please log in to view your transactions </p>
+          <div className="text-3xl"> {error} </div>
+        </div>
+      </div>
+    );
   }
 
   const incomes = data?.me?.incomes || [];
@@ -121,6 +139,7 @@ Object.entries(sheets).forEach(([sheetName, transactions]) => {
   saveAs(blob, "transaction_report.xlsx");
 };
 
+ 
   return (
     <div>
       <div className="flex justify-center items-center mt-12">
