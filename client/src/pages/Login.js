@@ -5,7 +5,6 @@ import { close } from "../utils/Icons";
 import { logoutIcon } from "../utils/Icons"
 import Auth from "../utils/auth"
 
-
 const customStyles = {
     content: {
         top: "50%",
@@ -42,17 +41,17 @@ function Login() {
     }
 
   return (
-    <div className="fixed top-5 right-24">
+    <div className="absolute top-5 right-4">
       {isLoggedIn ? (
         <div className="flex items-center">
             <button 
-                className="mr-2 "
+                className="mr-2 flex"
                 onClick={logout}>Logout</button> 
                 {logoutIcon}
         </div>
       ) : (
         <button 
-        className="px-12 py-2"
+        className="flex "
         onClick={openModal}>Login</button>
       )}
 

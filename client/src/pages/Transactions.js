@@ -3,7 +3,7 @@ import { useQuery } from "@apollo/client";
 import { QUERY_ME } from "../utils/queries";
 import { saveAs } from 'file-saver';
 import * as XLSX from "xlsx";
-import { transactions } from "../utils/Icons";
+
 
 function Transactions() {
 

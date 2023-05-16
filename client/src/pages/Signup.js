@@ -33,16 +33,17 @@ function Signup() {
     }
 
 const isLoggedIn = Auth.loggedIn();
-
+// flex justify-end
   return (
-    <div className="fixed top-5 right-6">
+    <div className="absolute top-5 right-0">
         {isLoggedIn ? null :
+    <div className="flex justify-end">
             <button 
-            className="px-2 py-2"
-            onClick={openModal}> Signup
+                className="mr-24"
+                onClick={openModal}> Signup
             </button>
+          </div>    
         }
-
             <Modal 
                 isOpen={modalIsOpen} 
                 style={customStyles}
@@ -50,7 +51,7 @@ const isLoggedIn = Auth.loggedIn();
                 onRequestClose={closeModal}>
                      
                      <button 
-                     className="float-right "
+                     className="float-right"
                      onClick={closeModal}> {close} </button>
                     
                     <SignupModal onClose={closeModal} />
