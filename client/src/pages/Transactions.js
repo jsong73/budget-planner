@@ -2,11 +2,12 @@ import React from "react";
 import { useQuery } from "@apollo/client";
 import { QUERY_ME } from "../utils/queries";
 import { saveAs } from 'file-saver';
+import * as XLSX from "xlsx";
+import { transactions } from "../utils/Icons";
 
 function Transactions() {
 
   const { loading, data } = useQuery(QUERY_ME);
-
 
   if (loading) {
     return <div> loading... </div>;
@@ -36,47 +37,89 @@ const recentTransactions = allTransactions.sort((a, b) => {
   return dateB.getTime() - dateA.getTime();
 });
 
-  const topFiveTransactions = recentTransactions.slice(0,7);
-  console.log(topFiveTransactions)
-  
-  //file save as CSV
-  const downloadCSV = () => {
-    const csvData = [
-      ["Title", "Type", "Amount", "Date", "Year"],
-      ...recentTransactions.map((transaction) => [
-        transaction.title,
-        transaction.__typename === 'Income' ? 'Income' : 'Expense',
-        transaction.amount,
-        transaction.date,
-      ]),
-      ['', "Total Income:", calculateTotalIncome()],
-      ['', "Total Expenses:", calculateTotalExpenses()],
-      ['', "Remaining Balance:", calculateRemainingBalance()],
-    ];
+//shows only first 7 transactions
+const topFiveTransactions = recentTransactions.slice(0,7);
+// console.log(topFiveTransactions)
 
-    const csvContent = csvData.map(row => row.join(',')).join('\n');
+// Create separate sheets for each month 
+const sheets = {};
+recentTransactions.forEach((transaction) => {
+  const date = parseDate(transaction.date);
+  const month = date.getMonth() + 1;
+  const year = date.getFullYear().toString().slice(-2);
+  let sheetName = `${month}/${year}`;
 
-    const blob = new Blob([csvContent], { type: 'text/csv;charset=utf-8' });
-    saveAs(blob, 'transaction_report.csv');
-  };
+  // Replace invalid characters in the sheet name
+  sheetName = sheetName.replace(/[\\/:?*[\]]/g, "_");
 
-  //income total calculations
-  const calculateTotalIncome = () => {
-    const totalIncome = incomes.reduce((sum, income) => sum + parseFloat(income.amount), 0);
-    return totalIncome.toFixed(2);
-  };
-// expense total calculations
-  const calculateTotalExpenses = () => {
-    const totalExpenses = expenses.reduce((sum, expense) => sum + parseFloat(expense.amount), 0);
-    return totalExpenses.toFixed(2);
-  };
-//calculation for remaining balance
-  const calculateRemainingBalance = () => {
-    const totalIncome = calculateTotalIncome();
-    const totalExpenses = calculateTotalExpenses();
-    const remainingBalance = totalIncome - totalExpenses;
-    return remainingBalance.toFixed(2);
-  };
+  if (!sheets[sheetName]) {
+    sheets[sheetName] = []; 
+  }
+  sheets[sheetName].push([
+    transaction.title,
+    transaction.__typename === "Income" ? "Income" : "Expense",
+    transaction.amount,
+    transaction.date,
+  ]);
+});
+
+// Calculate total income for a specific month
+const calculateTotalIncome = (transactions) => {
+  const totalIncome = transactions.reduce((sum, transaction) => {
+    if (transaction[1] === "Income") {
+      return sum + parseFloat(transaction[2]);
+    }
+    return sum;
+  }, 0);
+  return totalIncome;
+};
+
+// Calculate total expenses for a specific month
+const calculateTotalExpenses = (transactions) => {
+  const totalExpenses = transactions.reduce((sum, transaction) => {
+    if (transaction[1] === "Expense") {
+      return sum + parseFloat(transaction[2]);
+    }
+    return sum;
+  }, 0);
+  return totalExpenses;
+};
+
+const workbook = XLSX.utils.book_new();
+Object.entries(sheets).forEach(([sheetName, transactions]) => {
+
+  const totalIncome = calculateTotalIncome(transactions);
+  const totalExpenses = calculateTotalExpenses(transactions);
+  const remainingBalance = totalIncome - totalExpenses;
+
+  // Add summary information at the end of the transactions array
+  transactions.push(
+    ['', "Total Income:", totalIncome],
+    ['', "Total Expenses:", totalExpenses],
+    ['', "Remaining Balance:", remainingBalance]
+  );
+
+  // Create worksheet
+  const worksheet = XLSX.utils.aoa_to_sheet([
+    ["Title", "Type", "Amount", "Date"],
+    ...transactions,
+    ]);
+
+    // Add worksheet to workbook
+    XLSX.utils.book_append_sheet(workbook, worksheet, sheetName);
+  });
+
+// Download the excel file
+  const downloadExcelFile = () => {
+  const xlsxFile = XLSX.write(workbook, { type: "binary" });
+  const fileBuffer = new ArrayBuffer(xlsxFile.length);
+  const fileView = new Uint8Array(fileBuffer);
+  for (let i = 0; i < xlsxFile.length; i++) {
+    fileView[i] = xlsxFile.charCodeAt(i) & 0xff;
+  }
+  const blob = new Blob([fileBuffer], { type: "application/octet-stream" });
+  saveAs(blob, "transaction_report.xlsx");
+};
 
   return (
     <div>
@@ -105,7 +148,7 @@ const recentTransactions = allTransactions.sort((a, b) => {
 
         <button 
           className="mt-8 bg-zinc-800 rounded-xl flex px-10 py-1 border-solid border focus:bg-zinc-600"
-          onClick={downloadCSV}> Download Transaction Report </button>
+          onClick={downloadExcelFile}> Download Transaction Report </button>
         </div>
         
     </div>
