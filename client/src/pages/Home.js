@@ -117,7 +117,7 @@ function Home() {
               </div>
             </div>
 
-            <div className="flex justify-center items-center mt-20">
+            <div className="flex justify-center items-center mt-16">
                 <button 
                   onClick={handleToggle}
                   className="w-80 mb-4 bg-zinc-800 rounded-xl border-solid border"> 

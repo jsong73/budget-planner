@@ -73,7 +73,7 @@ function Income() {
               onMonthSelect={setSelectedMonth} 
             />
 
-            <div className="w-full lg:max-w-4xl mt-9">
+            <div className="flex flex-col lg:w-full lg:max-w-4xl lg:mt-9">
             {filteredIncomes.map((income) => (
               <IncomeDetails
                   key={income._id}
