@@ -1,4 +1,4 @@
-import React, {useState}from "react";
+import React from "react";
 import { money , calender , detail , profit, deleteBtn } from "../utils/Icons"
 import { REMOVE_INCOME } from "../utils/mutations";
 import { QUERY_ME } from "../utils/queries";

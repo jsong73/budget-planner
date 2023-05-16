@@ -94,16 +94,16 @@ function Home() {
           filteredExpenses={filteredExpenses}
         />
  
-            <div className="flex justify-center items-center text-center mt-12">
+            <div className="flex flex-col justify-center items-center text-center mt-12 sm:flex-row sm:justify-center sm:items-center">
               
-              <div className="mr-52">
+              <div className="lg:mr-52 mb-4">
                 <h1> Total Income this {view === "monthly" ? "Month" : "Year"}</h1>
                   <hr className="w-54 my-2 border-gray-300 border-t" />
                     <div className="font-bold">${totalIncome.toFixed(2)}</div>
               </div>
           
 
-              <div className="mr-48">
+              <div className="lg:mr-48 mb-4">
                 <h1> Total Expense this {view === "monthly" ? "Month" : "Year"} </h1>
                   <hr className="w-54 my-2 border-gray-300 border-t" />
                     <div className="font-bold">${totalExpense.toFixed(2)}</div>

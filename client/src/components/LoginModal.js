@@ -10,7 +10,7 @@ const LoginModal = (props) => {
         password: "",
       });
     
-      const [login, {error}] = useMutation(LOGIN_USER);
+      const [login] = useMutation(LOGIN_USER);
     
       const handleChange = (event) => {
         const {name, value} = event.target;

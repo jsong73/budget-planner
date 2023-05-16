@@ -10,7 +10,7 @@ const SignupModal = (props) => {
         password: "",
       });
     
-      const [addUser, {error}] = useMutation(ADD_USER);
+      const [addUser] = useMutation(ADD_USER);
     
       const handleChange = (event) => {
         const {name, value} = event.target;
