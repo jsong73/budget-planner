@@ -1,7 +1,7 @@
 import React, {useState} from "react";
 
-function MonthFilter({ onMonthSelect , onYearSelect }) {
-
+function DateFilter({ onMonthSelect , onYearSelect }) {
+  const [showMenu, setShowMenu] = useState(false);
   const [selectedMonthIndex, setSelectedMonthIndex] = useState(null);
 
     const months = [
@@ -43,7 +43,7 @@ function MonthFilter({ onMonthSelect , onYearSelect }) {
 
 
   return (
-    <div className="flex flex-row items-center justify-center mb-6 ml-44">
+    <div className="flex items-center justify-center mb-6 lg:ml-44">
       <div className="mr-4">
         <label htmlFor="year"> Year: </label>
         <select onChange={handleYearChange}>
@@ -54,19 +54,64 @@ function MonthFilter({ onMonthSelect , onYearSelect }) {
           ))}
         </select>
       </div>
-
-     {months.map((month, index) => (
+      
+  {/* Mobile Hamburger Menu for month filter*/}
+    <div className="lg:hidden">
         <button
-          key={index}
-          className={`bg-zinc-800 py-2 px-4 rounded-full mx-1 ml-2 
-          ${selectedMonthIndex === index ? "bg-zinc-600" : ""}`}
-          onClick={() => handleMonthClick(index)}
+          className="bg-zinc-600 py-2 px-4 rounded-full ml-2"
+          onClick={() => setShowMenu(!showMenu)}
         >
-          {month}
+          <svg
+            className="w-6 h-6 text-white transition duration-300 transform"
+            viewBox="0 0 24 24"
+          >
+            {showMenu ? (
+              <path
+                fillRule="evenodd"
+                d="M4 6h16v2H4zm0 5h16v2H4zm0 5h16v2H4z"
+              />
+            ) : (
+              <path
+                fillRule="evenodd"
+                d="M4 6h16v2H4zm0 5h16v2H4zm0 5h16v2H4z"
+              />
+            )}
+          </svg>
         </button>
-      ))}
+
+        {showMenu && (
+          <div className="absolute z-10 top-10 right-0 bg-zinc-700 rounded shadow mt-2">
+            {months.map((month, index) => (
+              <button
+                key={index}
+                className={`block py-2 px-4 w-full text-left ${
+                  selectedMonthIndex === index ? "bg-zinc-600" : ""
+                }`}
+                onClick={() => handleMonthClick(index)}
+              >
+                {month}
+              </button>
+            ))}
+          </div>
+        )}
+      </div>
+
+      {/* Desktop Month filter */}
+      <div className="hidden lg:block">
+        {months.map((month, index) => (
+          <button
+            key={index}
+            className={`bg-zinc-800 py-2 px-4 rounded-full mx-1 ml-2 ${
+              selectedMonthIndex === index ? "bg-zinc-600" : ""
+            }`}
+            onClick={() => handleMonthClick(index)}
+          >
+            {month}
+          </button>
+        ))}
+      </div>
     </div>
-  )}
+  );
+};
 
-
-export default MonthFilter;
+export default DateFilter;
