@@ -12,7 +12,6 @@ function Income() {
 
   const {loading, data } = useQuery(QUERY_ME);
 
-
   if (loading) {
     return <div> loading... </div>;
   }

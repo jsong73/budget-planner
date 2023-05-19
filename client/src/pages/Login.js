@@ -19,7 +19,6 @@ const customStyles = {
       },
   };
   
-  
 Modal.setAppElement("#root")
 
 function Login() {
