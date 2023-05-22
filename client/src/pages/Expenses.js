@@ -72,7 +72,7 @@ function Expenses() {
         onMonthSelect={setSelectedMonth} 
       />
 
-      <div className="w-full lg:max-w-4xl mt-9">
+      <div className="flex flex-col items-center mt-80 lg:ml-48 lg:mt-10 lg:max-w-4xl ">
             {filteredExpenses.map((expense) => (
               <ExpenseDetails
                   key={expense._id}
@@ -86,7 +86,7 @@ function Expenses() {
         ))}
             </div>       
 
-    <div className="w-full max-w-lg border-t border-gray-300 pt-4 mt-36 fixed bottom-20">
+    <div className="w-full max-w-lg border-t border-gray-300 pt-4 mt-36 flex justify-center bottom-20">
         <h2 className="font-bold text-2xl text-center text-red-800">Total Expenses: -${totalExpense.toFixed(2)}</h2>
     </div>
 
