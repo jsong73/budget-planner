@@ -1,6 +1,7 @@
 import React, {useState} from "react";
 
 function DateFilter({ onMonthSelect , onYearSelect }) {
+
   const [showMenu, setShowMenu] = useState(false);
   const [selectedMonthIndex, setSelectedMonthIndex] = useState(null);
 
@@ -41,9 +42,8 @@ function DateFilter({ onMonthSelect , onYearSelect }) {
       onYearSelect(selectedYear);
     };
 
-
   return (
-    <div className="flex items-center justify-center mb-6 lg:ml-44">
+    <div className="flex flex-col items-center justify-center text-center mb-6 lg:ml-44 lg:flex-row lg:items-center lg:justify-start">
       <div className="mr-4">
         <label htmlFor="year"> Year: </label>
         <select onChange={handleYearChange}>
@@ -55,12 +55,11 @@ function DateFilter({ onMonthSelect , onYearSelect }) {
         </select>
       </div>
       
-  {/* Mobile Hamburger Menu for month filter*/}
-    <div className="lg:hidden">
+  {/* Mobile Hamburger Menu for month filter */}
+    <div className="lg:hidden ml-72">
         <button
-          className="bg-zinc-600 py-2 px-4 rounded-full ml-2"
-          onClick={() => setShowMenu(!showMenu)}
-        >
+          className="bg-zinc-800 py-2 px-4 rounded-full ml-2"
+          onClick={() => setShowMenu(!showMenu)}>
           <svg
             className="w-6 h-6 text-white transition duration-300 transform"
             viewBox="0 0 24 24"

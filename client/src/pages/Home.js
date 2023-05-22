@@ -96,14 +96,14 @@ function Home() {
  
             <div className="flex flex-col justify-center items-center text-center mt-12 sm:flex-row sm:justify-center sm:items-center">
               
-              <div className="lg:mr-52 mb-4">
+              <div className="lg:mr-52">
                 <h1> Total Income this {view === "monthly" ? "Month" : "Year"}</h1>
                   <hr className="w-54 my-2 border-gray-300 border-t" />
                     <div className="font-bold">${totalIncome.toFixed(2)}</div>
               </div>
           
 
-              <div className="lg:mr-48 mb-4">
+              <div className="lg:mr-48">
                 <h1> Total Expense this {view === "monthly" ? "Month" : "Year"} </h1>
                   <hr className="w-54 my-2 border-gray-300 border-t" />
                     <div className="font-bold">${totalExpense.toFixed(2)}</div>
@@ -117,7 +117,7 @@ function Home() {
               </div>
             </div>
 
-            <div className="flex justify-center items-center mt-16">
+            <div className="flex justify-center items-center mt-14">
                 <button 
                   onClick={handleToggle}
                   className="w-80 mb-4 bg-zinc-800 rounded-xl border-solid border"> 
