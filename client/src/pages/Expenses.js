@@ -86,7 +86,7 @@ function Expenses() {
         ))}
             </div>       
 
-    <div className="w-full max-w-lg border-t border-gray-300 pt-4 mt-36 flex justify-center">
+    <div className="relative w-full max-w-lg border-t border-gray-300 pt-4 mt-36 flex justify-center items-center lg:fixed lg:bottom-20">
         <h2 className="font-bold text-2xl text-center text-red-800">Total Expenses: -${totalExpense.toFixed(2)}</h2>
     </div>
 
