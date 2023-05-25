@@ -6,6 +6,8 @@ Budget planner is a website that helps users organize their finances. A user can
 Frontend: Chart.js, React, Apollo GraphQL Client, Tailwind CSS  
 Backend: Node.js, Apollo GraphQL Server, Express, MongoDB, Mongoose, JWT Token Authentication, Bcrypt  
 
+Deployed via Heroku  
+
 ### View your Monthly or Yearly Dashboard
 ![chrome-capture-2023-4-15](https://github.com/jsong73/budget-planner/assets/111620893/26c9bbec-0f4e-40ce-83cf-fbf4eabd50e1)
 
