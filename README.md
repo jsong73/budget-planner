@@ -24,3 +24,6 @@ CSV file will be seperated into seperate sheets based on the month and provide c
 
 ### Input and filter through your Monthly Expenses  
 ![chrome-capture-2023-4-15 (3)](https://github.com/jsong73/budget-planner/assets/111620893/f803908c-892f-4b09-afc2-cdc98c5be6b5)
+
+### Delete Expenses/Incomes  
+![chrome-capture-2023-4-26](https://github.com/jsong73/budget-planner/assets/111620893/5ba8f2eb-4e7a-4b6a-af3c-bbf50df1a9b5)  
