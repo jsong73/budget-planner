@@ -39,31 +39,33 @@ function Home() {
   const currentMonth = today.toLocaleString('default', { month: 'long' });
   const currentYear = today.getFullYear().toString();
 
-  // Filter incomes and expenses based on the selected view
-  let filteredIncomes, filteredExpenses;
-  if (view === "monthly") {
-    filteredIncomes = incomes.filter((income) => {
-      // Extract the month name from the date string
-      const incomeMonth = income.date.substr(0, income.date.indexOf(' ')); 
-      // Extract the last four characters of the date string as the year
-      const incomeYear = income.date.substr(-4); 
-      return incomeMonth === currentMonth && incomeYear === currentYear;
-    });
-    // console.log(filteredIncomes);
-    filteredExpenses = expenses.filter((expense) => {
-      const expenseMonth = expense.date.substr(0, expense.date.indexOf(' ')); 
-      const expenseYear = expense.date.substr(-4);
-      return expenseMonth === currentMonth && expenseYear === currentYear;
-    });
-    // console.log(filteredExpenses);
-  } else {
-    filteredIncomes = incomes.filter((income) =>
-      income.date.endsWith(currentYear.toString())
-    );
-    filteredExpenses = expenses.filter((expense) =>
-      expense.date.endsWith(currentYear.toString())
-    );
-  }
+// Convert currentMonth to three-letter format (apr, may, jun)
+const currentMonthShort = currentMonth.substr(0, 3);
+
+// Filter incomes and expenses based on the selected view
+let filteredIncomes, filteredExpenses;
+if (view === "monthly") {
+  filteredIncomes = incomes.filter((income) => {
+    // Extract the month and year from the date string
+    const [incomeMonth] = income.date.match(/[A-Za-z]+/);
+    const incomeYear = income.date.match(/\d{4}/)[0];
+    return incomeMonth === currentMonthShort && incomeYear === currentYear;
+  });
+
+  filteredExpenses = expenses.filter((expense) => {
+    // Extract the month and year from the date string
+    const [expenseMonth] = expense.date.match(/[A-Za-z]+/);
+    const expenseYear = expense.date.match(/\d{4}/)[0];
+    return expenseMonth === currentMonthShort && expenseYear === currentYear;
+  });
+} else {
+  filteredIncomes = incomes.filter((income) =>
+    income.date.endsWith(currentYear.toString())
+  );
+  filteredExpenses = expenses.filter((expense) =>
+    expense.date.endsWith(currentYear.toString())
+  );
+}
 
   const totalIncome = filteredIncomes.reduce(
     (total, income) => total + Number(income.amount),
