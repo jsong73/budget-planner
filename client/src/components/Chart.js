@@ -85,6 +85,8 @@ function Chart({isLoggedInUser= false, filteredIncomes, filteredExpenses}) {
         }
     };
 
+
+    
     const circleGraphData = {
         labels:  filteredExpenses.map((expense) => {
             const { category } = expense
@@ -128,6 +130,7 @@ function Chart({isLoggedInUser= false, filteredIncomes, filteredExpenses}) {
             }
         }
     }
+    
   return (
     <div className={`chart-container ${isLoggedInUser ? '' : 'text-center'}`}>
         

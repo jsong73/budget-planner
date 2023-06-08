@@ -101,7 +101,7 @@ function DateFilter({ onMonthSelect , onYearSelect }) {
           <button
             key={index}
             className={`bg-zinc-800 py-2 px-4 rounded-full mx-1 ml-2 ${
-              selectedMonthIndex === index ? "bg-zinc-600" : ""
+              selectedMonthIndex === index ? "bg-zinc-500" : ""
             }`}
             onClick={() => handleMonthClick(index)}
           >
