@@ -6,6 +6,10 @@ Budget planner is a website that helps users organize their finances. A user can
 Frontend: Chart.js, React, Apollo GraphQL Client, Tailwind CSS  
 Backend: Node.js, Apollo GraphQL Server, Express, MongoDB, Mongoose, JWT Token Authentication, Bcrypt  
 
+Deployed via Heroku
+
+https://fiscalfolio.herokuapp.com/  
+
 ### View your Monthly or Yearly Dashboard
 ![chrome-capture-2023-4-15](https://github.com/jsong73/budget-planner/assets/111620893/26c9bbec-0f4e-40ce-83cf-fbf4eabd50e1)
 
@@ -22,3 +26,6 @@ CSV file will be seperated into seperate sheets based on the month and provide c
 
 ### Input and filter through your Monthly Expenses  
 ![chrome-capture-2023-4-15 (3)](https://github.com/jsong73/budget-planner/assets/111620893/f803908c-892f-4b09-afc2-cdc98c5be6b5)
+
+### Delete Expenses/Incomes  
+![chrome-capture-2023-4-26](https://github.com/jsong73/budget-planner/assets/111620893/5ba8f2eb-4e7a-4b6a-af3c-bbf50df1a9b5)  
