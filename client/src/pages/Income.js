@@ -21,14 +21,16 @@ function Income() {
 
   const today = new Date();
   const currentMonth = today.toLocaleString('default', { month: 'long' });
+  const shortenedMonth = currentMonth.substr(0, 3);
   const currentYear = today.getFullYear().toString();
+  // Convert currentMonth to three-letter format (apr, may, jun)
+
 
   // filtering incomes based on selected month and year
   //used .substring (0,3) since my months return shortened
   const filteredIncomes = selectedMonth && typeof selectedMonth === 'string' 
   ? selectedYear
   ? incomes.filter(income => {
-      const shortenedMonth = selectedMonth.substring(0, 3).toLowerCase();
       const year = selectedYear.toString();
       return (
         income.date &&
@@ -38,7 +40,6 @@ function Income() {
     })
     //filter incomes based on current month and year if no month is selected but a year is selected
     : incomes.filter(income => {
-      const shortenedMonth = selectedMonth.substring(0, 3).toLowerCase();
       const year = currentYear;
       return (
         income.date &&
@@ -50,7 +51,7 @@ function Income() {
     : incomes.filter(income => {
     const incomeMonth = income.date.substring(0, income.date.indexOf(' '));
     const incomeYear = income.date.substring(income.date.lastIndexOf(' ') + 1);
-    return incomeMonth === currentMonth && incomeYear === currentYear;
+    return incomeMonth === shortenedMonth && incomeYear === currentYear;
   });
 
   //adds up all the income amounts

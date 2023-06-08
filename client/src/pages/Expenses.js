@@ -21,6 +21,7 @@ function Expenses() {
 
   const today = new Date();
   const currentMonth = today.toLocaleString('default', { month: 'long' });
+  const shortenedMonth = currentMonth.substr(0, 3);
   const currentYear = today.getFullYear().toString();
 
   // filtering incomes based on selected month and year
@@ -28,7 +29,6 @@ function Expenses() {
   const filteredExpenses = selectedMonth && typeof selectedMonth === 'string' 
   ? selectedYear
   ? expenses.filter(expense => {
-      const shortenedMonth = selectedMonth.substring(0, 3).toLowerCase();
       const year = selectedYear.toString();
       return (
         expense.date &&
@@ -38,7 +38,6 @@ function Expenses() {
     })
     //filter incomes based on current month and year if no month is selected but a year is selected
     : expenses.filter(expense => {
-      const shortenedMonth = selectedMonth.substring(0, 3).toLowerCase();
       const year = currentYear;
       return (
         expense.date &&
@@ -50,7 +49,7 @@ function Expenses() {
     : expenses.filter(expense => {
     const expenseMonth = expense.date.substring(0, expense.date.indexOf(' '));
     const expenseYear = expense.date.substring(expense.date.lastIndexOf(' ') + 1);
-    return expenseMonth === currentMonth && expenseYear === currentYear;
+    return expenseMonth === shortenedMonth && expenseYear === currentYear;
   });
 
   //adds up all the income amounts
