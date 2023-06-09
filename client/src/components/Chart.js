@@ -26,51 +26,68 @@ ChartJs.register(
 
 function Chart({isLoggedInUser= false, filteredIncomes, filteredExpenses}) {
 
-    const {loading } = useQuery(QUERY_ME)
+// current year 
+const currentYear = new Date().getFullYear().toString();
 
-    if (loading) {
-      return <div> loading... </div>;
-    }
+// filter incomes based on the current year
+const filteredIncomesByYear = filteredIncomes.filter(income => {
+const incomeYear = income.date.substring(income.date.lastIndexOf(' ') + 1);
+    return incomeYear === currentYear;
+  });
 
-    // const incomes = data?.me?.incomes || [];
-    // const expenses = data?.me?.expenses || [];
+// filter expenses based on the current year
+const filteredExpensesByYear = filteredExpenses.filter(expense => {
+const expenseYear = expense.date.substring(expense.date.lastIndexOf(' ') + 1);
+    return expenseYear === currentYear;
+    });
 
-    const lineGraphData = {
-        labels:  filteredIncomes.map((income) => {
-            const { date } = income
-            return date;
-        }),
-        datasets: [
-           { 
-                label: "Income",
-                data:[
-                    ...filteredIncomes.map((income) => {
-                        const { amount } = income
-                        return amount;
-                    })
-                ],
-                backgroundColor: "#2eb96a",
-                borderColor: "#2eb96a",
-                borderWidth: 1,
-                tension: .2
-            },
-            { 
-                label: "Expenses",
-                data:[
-                    ...filteredExpenses.map((expense) => {
-                        const { amount } = expense
-                        return amount;
-                    })
-                ],
-                backgroundColor: "#eb3b5b",
-                borderColor: "#eb3b5b",
-                borderWidth: 1,
-                tension: .2
-            },
-        ]
-    }
+//add category amounts
+const categoryAmounts = filteredExpensesByYear.reduce((amounts, expense) => {
+const { category, amount } = expense;
+if (amounts[category]) {
+    amounts[category] += Number(amount);
+} else {
+    amounts[category] = Number(amount);
+}
+  return amounts;
+}, {});
 
-    const lineOptions = {
+// Obtain unique categories and summed amounts
+const uniqueCategories = Object.keys(categoryAmounts);
+const summedAmounts = Object.values(categoryAmounts);
+
+const {loading } = useQuery(QUERY_ME)
+
+if (loading) {
+return <div> loading... </div>;
+}
+
+// const incomes = data?.me?.incomes || [];
+// const expenses = data?.me?.expenses || [];
+
+const lineGraphData = {
+    labels: filteredIncomesByYear.map(income => income.date),
+    datasets: [
+      {
+        label: "Income",
+        data: filteredIncomesByYear.map(income => income.amount),
+        backgroundColor: "#2eb96a",
+        borderColor: "#2eb96a",
+        borderWidth: 1,
+        tension: 0.2
+      },
+      {
+        label: "Expenses",
+        data: filteredExpensesByYear.map(expense => expense.amount),
+        backgroundColor: "#eb3b5b",
+        borderColor: "#eb3b5b",
+        borderWidth: 1,
+        tension: 0.2
+      }
+    ]
+  };
+
+const lineOptions = {
         scales: {
             y: {
                 ticks: {
@@ -86,50 +103,41 @@ function Chart({isLoggedInUser= false, filteredIncomes, filteredExpenses}) {
     };
 
 
-    
-    const circleGraphData = {
-        labels:  filteredExpenses.map((expense) => {
-            const { category } = expense
-            return category;
-        }),
-        datasets: [
-           { 
-                label: "Expenses",
-                data:[
-                    ...filteredExpenses.map((expense) => {
-                        const { amount } = expense
-                        return amount;
-                    })
-                ],
-                backgroundColor: [
-                    '#f39f3e',
-                    '#4e7be0',
-                    '#2eb96a',
-                    '#eb3b5b',
-                    '#9c589c',
-                    '#2C6454',
-                    '#E8DD68',
-                    '#005AFF',
-                    '#6B37C4',
-                    '#FC8585',
-                    '#374473'
 
-                ],
-                borderWidth: 1,
-            },
-        ]
-    }
+const circleGraphData = {
+  labels: uniqueCategories,
+  datasets: [
+    {
+      label: "Expenses",
+      data: summedAmounts,
+      backgroundColor: [
+        '#f39f3e',
+        '#4e7be0',
+        '#2eb96a',
+        '#eb3b5b',
+        '#9c589c',
+        '#2C6454',
+        '#E8DD68',
+        '#005AFF',
+        '#6B37C4',
+        '#FC8585',
+        '#374473',
+      ],
+      borderWidth: 1,
+    },
+  ],
+};
 
-    const circleOptions = {
-        plugins: {
-            legend: {
-                position: 'bottom',
-                labels: {
-                    color: '#EDEADE'
-                }
-            }
-        }
-    }
+const circleOptions = {
+  plugins: {
+    legend: {
+      position: 'bottom',
+      labels: {
+        color: '#EDEADE',
+      },
+    },
+  },
+};
     
   return (
     <div className={`chart-container ${isLoggedInUser ? '' : 'text-center'}`}>
