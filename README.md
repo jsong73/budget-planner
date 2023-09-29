@@ -1,6 +1,8 @@
 # budget-planner
 
-Budget planner is a website that helps users organize their finances. A user can view their monthly OR yearly income and expenses and view graphs and charts based on their input data. Users are also able to download a CSV file that calculates their monthly income, expenses, and the remaining balance by organizing their data into seperate excel sheets by the month.  
+Fiscalfolio is your go-to online financial companion, meticulously designed to empower users in taking command of their finances. With our user-friendly interface, you can effortlessly manage and visualize both your monthly and yearly income and expenditures, all while gaining valuable insights through dynamic graphs and charts generated from your input data.
+
+But that's not all – Fiscalfolio offers a convenient download feature that generates a comprehensive CSV file. This file meticulously calculates your monthly income, expenses, and the remaining balance, meticulously organized into separate Excel sheets for each month. Say goodbye to financial disarray and hello to financial clarity with Fiscalfolio.
 
 ## Technology  
 Frontend: Chart.js, React, Apollo GraphQL Client, Tailwind CSS  
